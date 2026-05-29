@@ -4,8 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Aaron Hampton</title>
+<meta name="description" content="HB.3KK / Aaron Hampton — director and cinematographer based in Waldorf, MD. Cinematic sports films and brand stories." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://dl.dropboxusercontent.com" crossorigin />
+<link rel="preload" as="image" href="assets/hb3kk-logo.png" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="site.css" />
 <style>
@@ -261,6 +264,30 @@
     .quote-block__mark{margin-bottom:-16px}
   }
 
+  /* ============================================================
+     INTRO / BIO — under hero
+     ============================================================ */
+  .intro-bio{
+    background:#0a0a0b;
+    padding:clamp(72px,12vw,160px) 36px;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .intro-bio__inner{max-width:1100px;margin:0 auto;text-align:center}
+  .intro-bio__eyebrow{
+    font-family:var(--mono);
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    color:rgba(244,239,230,.55);margin-bottom:32px;
+  }
+  .intro-bio__copy{
+    font-family:'Instrument Serif',serif;font-weight:400;
+    font-size:clamp(24px,3.2vw,44px);line-height:1.25;letter-spacing:-.01em;
+    color:rgba(244,239,230,.92);margin:0;
+  }
+  .intro-bio__name{font-style:italic;color:#f4efe6}
+  @media (max-width:760px){
+    .intro-bio{padding:80px 24px}
+  }
+
   @media (prefers-reduced-motion: reduce){
     *, *::before, *::after{animation-duration:.01ms !important; transition-duration:.01ms !important}
   }
@@ -270,7 +297,7 @@
 
 <!-- TOP NAV -->
 <nav class="site-nav" aria-label="Primary">
-  <a href="Aaron Hampton.html" class="home-mark" aria-label="HB.3KK"><img src="assets/hb3kk-logo.png" alt="HB.3KK" style="height:84px;width:auto;display:block;filter:brightness(0) invert(1)" /></a>
+  <a href="Aaron Hampton.html" class="home-mark" aria-label="HB.3KK"><img src="assets/hb3kk-logo.png" alt="HB.3KK" style="height:84px;width:auto;display:block;filter:brightness(0) invert(1)"  loading="lazy" decoding="async" /></a>
   <ul>
     <li><a href="work.html">Work</a></li>
     <li><a href="about.html">About</a></li>
@@ -287,9 +314,17 @@
   <div class="hero__grade" aria-hidden="true"></div>
 
   <div class="hero__fg" id="heroFg">
-    <div class="hero__eyebrow">Director, Cinematographer</div>
-    <img class="hero__name" src="assets/hb3kk-logo.png" alt="HB.3KK" style="width:min(82vw,1200px);height:auto;display:block;" />
-    <div class="hero__location">Based in Waldorf</div>
+    <img class="hero__name" src="assets/hb3kk-logo.png" alt="HB.3KK — Aaron Hampton" style="width:min(82vw,1200px);height:auto;display:block;" />
+  </div>
+</section>
+
+<!-- INTRO / BIO -->
+<section class="intro-bio">
+  <div class="intro-bio__inner">
+    <p class="intro-bio__eyebrow">About</p>
+    <h2 class="intro-bio__copy">
+      <span class="intro-bio__name">HB.3KK</span>, otherwise known as <span class="intro-bio__name">Aaron Hampton</span>, is a director and cinematographer based in Waldorf, Maryland — crafting cinematic sports films and brand stories that move with intention, rhythm, and soul.
+    </h2>
   </div>
 </section>
 
@@ -306,10 +341,10 @@
     <div class="trusted__inner">
       <div class="trusted__label"><span>Trusted By</span></div>
       <div class="trusted__logos">
-        <a class="trusted__logo" href="clients.html" aria-label="Towson University Tigers"><img src="assets/towson.png" alt="Towson University Tigers" /></a>
-        <a class="trusted__logo" href="clients.html" aria-label="Towson University"><img src="assets/towson-seal.png" alt="Towson University Seal" /></a>
-        <a class="trusted__logo" href="clients.html" aria-label="Morgan State University"><img src="assets/morgan-state.svg" alt="Morgan State University" /></a>
-        <a class="trusted__logo" href="clients.html" aria-label="Kappa Alpha Psi"><img src="assets/kappa-alpha-psi.png" alt="Kappa Alpha Psi" /></a>
+        <a class="trusted__logo" href="clients.html" aria-label="Towson University Tigers"><img src="assets/towson.png" alt="Towson University Tigers"  loading="lazy" decoding="async" /></a>
+        <a class="trusted__logo" href="clients.html" aria-label="Towson University"><img src="assets/towson-seal.png" alt="Towson University Seal"  loading="lazy" decoding="async" /></a>
+        <a class="trusted__logo" href="clients.html" aria-label="Morgan State University"><img src="assets/morgan-state.svg" alt="Morgan State University"  loading="lazy" decoding="async" /></a>
+        <a class="trusted__logo" href="clients.html" aria-label="Kappa Alpha Psi"><img src="assets/kappa-alpha-psi.png" alt="Kappa Alpha Psi"  loading="lazy" decoding="async" /></a>
       </div>
     </div>
   </section>
@@ -377,8 +412,8 @@
     <div>
       <h4>Elsewhere</h4>
       <div class="socials">
-        <a href="https://instagram.com/aaronhampton" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram" /></a>
-        <a href="https://linkedin.com/in/aaronhampton" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+        <a href="https://instagram.com/aaronhampton" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram"  loading="lazy" decoding="async" /></a>
+        <a href="https://linkedin.com/in/aaronhampton" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn"  loading="lazy" decoding="async" /></a>
       </div>
     </div>
     <div class="site-foot__base">
