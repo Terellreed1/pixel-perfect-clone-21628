@@ -9,6 +9,7 @@
   --ink-faint:rgba(244,239,230,.18);
   --accent:#f4efe6;        /* no colored accent — keep it monochrome */
   --hairline:rgba(244,239,230,.14);
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace; /* camera-metadata captions */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{
