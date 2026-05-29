@@ -505,3 +505,74 @@ img,video,iframe,svg{max-width:100%;height:auto}
 @media (prefers-reduced-motion: reduce){
   .iris__disc{transition:none}
 }
+
+/* ------------------------------------------------------------
+   Toast (coming-soon notice)
+   ------------------------------------------------------------ */
+.toast{
+  position:fixed;left:50%;bottom:32px;transform:translate(-50%, 24px);
+  z-index:60;display:flex;align-items:center;gap:12px;
+  background:rgba(10,10,11,.92);backdrop-filter:blur(8px);
+  border:1px solid var(--hairline);
+  padding:14px 20px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.toast.show{opacity:1;transform:translate(-50%, 0)}
+.toast__dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--ink);
+  box-shadow:0 0 10px rgba(244,239,230,.6);
+  animation:toastPulse 1.4s ease-in-out infinite;
+}
+@keyframes toastPulse{
+  0%,100%{opacity:.5;transform:scale(.85)}
+  50%{opacity:1;transform:scale(1.05)}
+}
+
+/* ------------------------------------------------------------
+   Multi-step contact form
+   ------------------------------------------------------------ */
+.form--multi{display:flex;flex-direction:column;gap:32px}
+.form__progress{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ink-dim);
+}
+.form__progress .bar{
+  flex:1;height:2px;background:var(--hairline);position:relative;overflow:hidden;
+}
+.form__progress .bar::after{
+  content:"";position:absolute;left:0;top:0;bottom:0;
+  width:var(--p,25%);background:var(--ink);
+  transition:width .5s cubic-bezier(.2,.7,.2,1);
+}
+.form__steps{position:relative;min-height:240px}
+.form__step{
+  display:none;flex-direction:column;gap:24px;
+  animation:stepIn .5s cubic-bezier(.2,.7,.2,1);
+}
+.form__step.is-active{display:flex}
+@keyframes stepIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.form__step h3{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:clamp(28px,3.4vw,44px);line-height:1.1;
+}
+.form__chips{display:flex;flex-wrap:wrap;gap:10px}
+.form__chips button{
+  padding:12px 18px;border:1px solid var(--hairline);background:transparent;color:var(--ink);
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+}
+.form__chips button:hover{border-color:var(--ink)}
+.form__chips button.is-active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.form__nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:8px}
+.form__nav .back{
+  background:transparent;border:0;color:var(--ink-dim);cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  padding:8px 0;transition:color .2s;
+}
+.form__nav .back:hover{color:var(--ink)}
+.form__nav .back[disabled]{opacity:.3;cursor:default}

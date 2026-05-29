@@ -92,3 +92,22 @@
     });
   }
 })();
+
+/* ----- 4. Case-study coming-soon toast on work rows ----- */
+(function(){
+  var rows = document.querySelectorAll('.work-row');
+  if (!rows.length) return;
+  var toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = '<span class="toast__dot"></span><span class="toast__txt">Case study — coming soon</span>';
+  document.body.appendChild(toast);
+  var t;
+  rows.forEach(function(r){
+    r.style.cursor = 'pointer';
+    r.addEventListener('click', function(){
+      toast.classList.add('show');
+      clearTimeout(t);
+      t = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+    });
+  });
+})();
