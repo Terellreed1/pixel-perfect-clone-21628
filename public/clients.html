@@ -99,6 +99,28 @@
 </style>
 </head>
 <body>
+<!-- PRELOADER -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__leak"><span></span></div>
+  <div class="preloader__orbit">
+    <span class="dot"></span>
+    <span class="bubble b1"></span>
+    <span class="bubble b2"></span>
+    <span class="bubble b3"></span>
+  </div>
+</div>
+<script>
+  (function(){
+    var p = document.getElementById('preloader');
+    if(!p) return;
+    var hide = function(){ setTimeout(function(){ p.classList.add('is-hidden'); }, 350); };
+    if(document.readyState === 'complete'){ hide(); }
+    else { window.addEventListener('load', hide); }
+    // safety: never block more than 5s
+    setTimeout(hide, 5000);
+  })();
+</script>
+
 
 <nav class="site-nav" aria-label="Primary">
   <ul>
