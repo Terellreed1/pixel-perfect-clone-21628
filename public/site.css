@@ -150,15 +150,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .site-foot__big a:hover{border-color:var(--ink)}
 .site-foot h4{
-  font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
   color:var(--ink-dim);font-weight:500;margin-bottom:14px;
 }
 .site-foot ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.site-foot ul a{font-size:14px;opacity:.85;transition:opacity .2s}
+.site-foot ul a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;opacity:.85;transition:opacity .2s}
 .site-foot ul a:hover{opacity:1}
 .site-foot__base{
   grid-column:1 / -1;display:flex;justify-content:space-between;
-  font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--ink-dim);
   padding-top:32px;margin-top:24px;
   border-top:1px solid var(--hairline);
