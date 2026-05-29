@@ -170,44 +170,84 @@
     </div>
   </div>
 
-  <form class="form" id="contactForm" novalidate>
+  <form class="form form--multi" id="contactForm" novalidate>
     <div class="form__inner">
-      <div class="form__grid">
-        <div class="form__row">
-          <label for="f-name">Name</label>
-          <input id="f-name" name="name" type="text" required placeholder="Your name" />
+      <div class="form__progress">
+        <span id="stepLabel">Step 1 / 4</span>
+        <span class="bar" id="stepBar" style="--p:25%"></span>
+      </div>
+
+      <div class="form__steps">
+        <!-- Step 1 — project type -->
+        <div class="form__step is-active" data-step="1">
+          <h3>What kind of project?</h3>
+          <div class="form__chips" data-field="type">
+            <button type="button" data-val="Commercial">Commercial</button>
+            <button type="button" data-val="Music Video">Music Video</button>
+            <button type="button" data-val="Documentary">Documentary</button>
+            <button type="button" data-val="Narrative">Narrative</button>
+            <button type="button" data-val="Sport / Brand">Sport / Brand</button>
+            <button type="button" data-val="Something Else">Something Else</button>
+          </div>
         </div>
-        <div class="form__row">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" required placeholder="you@studio.com" />
+
+        <!-- Step 2 — timeline -->
+        <div class="form__step" data-step="2">
+          <h3>When do you need it?</h3>
+          <div class="form__chips" data-field="timeline">
+            <button type="button" data-val="ASAP">ASAP</button>
+            <button type="button" data-val="1–3 months">1–3 months</button>
+            <button type="button" data-val="3–6 months">3–6 months</button>
+            <button type="button" data-val="Flexible">Flexible</button>
+          </div>
+        </div>
+
+        <!-- Step 3 — budget -->
+        <div class="form__step" data-step="3">
+          <h3>Working budget?</h3>
+          <div class="form__chips" data-field="budget">
+            <button type="button" data-val="< $5k">&lt; $5k</button>
+            <button type="button" data-val="$5–15k">$5–15k</button>
+            <button type="button" data-val="$15–50k">$15–50k</button>
+            <button type="button" data-val="$50k+">$50k+</button>
+            <button type="button" data-val="TBD">TBD</button>
+          </div>
+        </div>
+
+        <!-- Step 4 — details -->
+        <div class="form__step" data-step="4">
+          <h3>Tell me about it.</h3>
+          <div class="form__grid">
+            <div class="form__row">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" required placeholder="Your name" />
+            </div>
+            <div class="form__row">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" required placeholder="you@studio.com" />
+            </div>
+          </div>
+          <div class="form__row">
+            <label for="f-msg">The pitch</label>
+            <textarea id="f-msg" name="message" required placeholder="What are you making, who is it for, and what's the vibe?"></textarea>
+          </div>
         </div>
       </div>
-      <div class="form__row">
-        <label for="f-type">Project Type</label>
-        <select id="f-type" name="type">
-          <option>Commercial</option>
-          <option>Music Video</option>
-          <option>Documentary</option>
-          <option>Narrative / Short Film</option>
-          <option>Sport / Brand</option>
-          <option>Editorial</option>
-          <option>Something Else</option>
-        </select>
+
+      <div class="form__nav">
+        <button type="button" class="back" id="btnBack" disabled>← Back</button>
+        <button class="btn-send" type="button" id="btnNext">
+          <span id="btnNextLabel">Next</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+        </button>
       </div>
-      <div class="form__row">
-        <label for="f-msg">Tell me about it</label>
-        <textarea id="f-msg" name="message" required placeholder="What are you making, who is it for, and when do you need it?"></textarea>
-      </div>
-      <button class="btn-send" type="submit">
-        <span>Send</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
-      </button>
     </div>
     <div class="form__sent">
       <h3>Sent. Talk soon.</h3>
       <p>I'll reply within a day. If it's urgent, write directly to hello@aaronhampton.tv.</p>
     </div>
   </form>
+
 </section>
 
 <footer class="site-foot">
@@ -247,5 +287,81 @@
     window.scrollTo({top:0, behavior:'smooth'});
   });
 </script>
+<script>
+  (function(){
+    var form     = document.getElementById('contactForm');
+    if (!form) return;
+    var steps    = form.querySelectorAll('.form__step');
+    var bar      = document.getElementById('stepBar');
+    var label    = document.getElementById('stepLabel');
+    var btnBack  = document.getElementById('btnBack');
+    var btnNext  = document.getElementById('btnNext');
+    var btnNextL = document.getElementById('btnNextLabel');
+    var data     = { type:'', timeline:'', budget:'' };
+    var cur      = 1, total = steps.length;
+
+    // Chip selection
+    form.querySelectorAll('.form__chips').forEach(function(group){
+      var field = group.dataset.field;
+      group.addEventListener('click', function(e){
+        var b = e.target.closest('button'); if(!b) return;
+        group.querySelectorAll('button').forEach(function(x){ x.classList.remove('is-active'); });
+        b.classList.add('is-active');
+        data[field] = b.dataset.val;
+      });
+    });
+
+    function render(){
+      steps.forEach(function(s){
+        s.classList.toggle('is-active', +s.dataset.step === cur);
+      });
+      bar.style.setProperty('--p', (cur/total*100) + '%');
+      label.textContent = 'Step ' + cur + ' / ' + total;
+      btnBack.disabled = cur === 1;
+      btnNextL.textContent = cur === total ? 'Send' : 'Next';
+    }
+
+    function valid(){
+      if (cur === 1) return !!data.type      || (alert('Pick a project type.'), false);
+      if (cur === 2) return !!data.timeline  || (alert('Pick a timeline.'), false);
+      if (cur === 3) return !!data.budget    || (alert('Pick a budget.'), false);
+      if (cur === 4){
+        var n = form.querySelector('#f-name').value.trim();
+        var e = form.querySelector('#f-email').value.trim();
+        var m = form.querySelector('#f-msg').value.trim();
+        if (!n || !e || !m){ alert('Add your name, email, and a short pitch.'); return false; }
+        return true;
+      }
+      return true;
+    }
+
+    btnBack.addEventListener('click', function(){
+      if (cur > 1){ cur--; render(); }
+    });
+
+    btnNext.addEventListener('click', function(){
+      if (!valid()) return;
+      if (cur < total){ cur++; render(); return; }
+      // Final — open mail client with everything composed
+      var name  = form.querySelector('#f-name').value.trim();
+      var email = form.querySelector('#f-email').value.trim();
+      var msg   = form.querySelector('#f-msg').value.trim();
+      var body =
+        'Project Type: ' + data.type      + '\n' +
+        'Timeline:     ' + data.timeline  + '\n' +
+        'Budget:       ' + data.budget    + '\n' +
+        'From:         ' + name + ' <' + email + '>\n\n' +
+        msg;
+      var href = 'mailto:hello@aaronhampton.tv'
+        + '?subject=' + encodeURIComponent('New project — ' + (data.type || 'inquiry'))
+        + '&body='    + encodeURIComponent(body);
+      window.location.href = href;
+      form.classList.add('sent');
+    });
+
+    render();
+  })();
+</script>
+<script src="site.js" defer></script>
 </body>
 </html>
