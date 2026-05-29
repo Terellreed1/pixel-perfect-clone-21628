@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contact — Aaron Hampton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  body{opacity:1;background:var(--bg)}
+
+  .contact{
+    max-width:1300px;margin:0 auto;padding:100px 36px 120px;
+    display:grid;grid-template-columns:1.1fr 1fr;gap:120px;align-items:start;
+  }
+
+  .contact__email{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3.5vw,52px);
+    letter-spacing:.04em;text-transform:lowercase;
+    border-bottom:1px solid var(--ink-faint);padding-bottom:10px;display:inline-block;
+    transition:border-color .25s, padding .25s;
+  }
+  .contact__email:hover{border-color:var(--ink);padding-bottom:14px}
+
+  .contact__socials{margin-top:40px}
+  .contact__socials h4{
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);
+    font-weight:500;margin-bottom:16px;
+  }
+
+  /* Form — cleaner: minimal fields, no boxed background */
+  .form{display:flex;flex-direction:column;gap:32px;padding-top:4px}
+  .form__row{display:flex;flex-direction:column;gap:10px}
+  .form__row label{
+    font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);
+  }
+  .form__row input,
+  .form__row select,
+  .form__row textarea{
+    background:transparent;border:0;border-bottom:1px solid var(--hairline);
+    padding:8px 0 14px;color:var(--ink);
+    font:400 18px/1.4 'Inter',sans-serif;
+    width:100%;resize:none;outline:none;
+    transition:border-color .2s;
+  }
+  .form__row input::placeholder,
+  .form__row textarea::placeholder{color:var(--ink-faint)}
+  .form__row input:focus,
+  .form__row select:focus,
+  .form__row textarea:focus{border-color:var(--ink)}
+  .form__row textarea{min-height:120px}
+  .form__row select{
+    appearance:none;cursor:pointer;
+    background-image:linear-gradient(45deg, transparent 50%, var(--ink-dim) 50%),
+                     linear-gradient(135deg, var(--ink-dim) 50%, transparent 50%);
+    background-position:right 4px center, right 0 center;
+    background-size:6px 6px;background-repeat:no-repeat;padding-right:24px;
+  }
+  .form__row select option{background:var(--bg);color:var(--ink)}
+
+  .form__grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+
+  .btn-send{
+    align-self:flex-start;
+    padding:18px 32px;background:var(--ink);color:var(--bg);
+    font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;
+    text-transform:uppercase;cursor:pointer;border:0;
+    transition:background .2s, color .2s, transform .2s;
+    display:flex;align-items:center;gap:14px;
+    margin-top:8px;
+  }
+  .btn-send:hover{background:transparent;color:var(--ink);outline:1px solid var(--ink);transform:translateY(-2px)}
+  .btn-send svg{width:18px;height:18px}
+
+  .form.sent .form__inner{display:none}
+  .form__sent{display:none;flex-direction:column;gap:14px;text-align:left;padding:24px 0}
+  .form.sent .form__sent{display:flex}
+  .form__sent h3{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:.04em}
+  .form__sent p{font-size:14px;line-height:1.55;color:var(--ink-dim)}
+
+  @media (max-width:800px){
+    .contact{grid-template-columns:1fr;padding:120px 20px 80px;gap:60px}
+    .form__grid{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Primary">
+  <a href="Aaron Hampton.html" class="home-mark">AARON HAMPTON</a>
+  <ul>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="clients.html">Clients</a></li>
+    <li><a href="contact.html" class="is-active">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-head">
+  <div class="page-head__bg" style="background-image:url('assets/header-contact.jpg')"></div>
+  <h1 class="page-head__title">Let's make<br/>something.</h1>
+  <p class="page-head__lead">Drop a line. Replies usually land within a day. The form is the fastest way in, but hello@aaronhampton.tv works too.</p>
+</header>
+
+<section class="contact">
+  <div class="contact__head">
+    <a class="contact__email" href="mailto:hello@aaronhampton.tv">hello@aaronhampton.tv</a>
+    <div class="contact__socials">
+      <h4>Find me elsewhere</h4>
+      <div class="socials">
+        <a href="https://instagram.com/aaronhampton" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram" /></a>
+        <a href="https://linkedin.com/in/aaronhampton" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+      </div>
+    </div>
+  </div>
+
+  <form class="form" id="contactForm" novalidate>
+    <div class="form__inner">
+      <div class="form__grid">
+        <div class="form__row">
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" required placeholder="Your name" />
+        </div>
+        <div class="form__row">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required placeholder="you@studio.com" />
+        </div>
+      </div>
+      <div class="form__row">
+        <label for="f-type">Project Type</label>
+        <select id="f-type" name="type">
+          <option>Commercial</option>
+          <option>Music Video</option>
+          <option>Documentary</option>
+          <option>Narrative / Short Film</option>
+          <option>Sport / Brand</option>
+          <option>Editorial</option>
+          <option>Something Else</option>
+        </select>
+      </div>
+      <div class="form__row">
+        <label for="f-msg">Tell me about it</label>
+        <textarea id="f-msg" name="message" required placeholder="What are you making, who is it for, and when do you need it?"></textarea>
+      </div>
+      <button class="btn-send" type="submit">
+        <span>Send</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+      </button>
+    </div>
+    <div class="form__sent">
+      <h3>Sent. Talk soon.</h3>
+      <p>I'll reply within a day. If it's urgent, write directly to hello@aaronhampton.tv.</p>
+    </div>
+  </form>
+</section>
+
+<footer class="site-foot">
+  <div class="site-foot__big">
+    <span>Let's make<br/>something.</span><br/>
+    <a href="contact.html">hello@aaronhampton.tv</a>
+  </div>
+  <div>
+    <h4>Index</h4>
+    <ul>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="clients.html">Clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Elsewhere</h4>
+    <div class="socials">
+      <a href="https://instagram.com/aaronhampton" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram" /></a>
+      <a href="https://linkedin.com/in/aaronhampton" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+    </div>
+  </div>
+  <div class="site-foot__base">
+    <span>© Aaron Hampton</span>
+    <span>Available worldwide</span>
+    <span>Replies within 24 hours</span>
+  </div>
+</footer>
+
+<div class="patina" aria-hidden="true"><div class="grain"></div><div class="scan"></div><div class="vig"></div></div>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    e.currentTarget.classList.add('sent');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+</script>
+</body>
+</html>

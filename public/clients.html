@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Clients — Aaron Hampton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  body{opacity:1}
+
+  /* Featured client (Towson) */
+  .featured-client{
+    max-width:1400px;margin:0 auto;padding:140px 36px 60px;
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  }
+  .featured-client__card{
+    aspect-ratio:4/5;background:#0d0d0e;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--hairline);position:relative;overflow:hidden;
+  }
+  .featured-client__card::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(80% 60% at 50% 40%, rgba(252,213,53,.06), transparent 60%);
+    pointer-events:none;
+  }
+  .featured-client__card img{max-width:65%;max-height:55%;width:auto;height:auto}
+  .featured-client__copy{display:flex;flex-direction:column;gap:20px}
+  .featured-client__copy .eyebrow{
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);
+  }
+  .featured-client__copy h2{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,108px);
+    line-height:.88;text-transform:uppercase;letter-spacing:.005em;
+  }
+  .featured-client__copy p{
+    font-size:15px;line-height:1.6;color:var(--ink-dim);max-width:44ch;text-wrap:pretty;
+  }
+  .featured-client__copy .work-link{margin-top:8px}
+
+  /* Client roster */
+  .roster{
+    max-width:1400px;margin:0 auto;padding:80px 36px;
+    border-top:1px solid var(--hairline);
+  }
+  .roster__head{
+    display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:40px;
+  }
+  .roster__head h2{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,72px);
+    line-height:.95;text-transform:uppercase;
+  }
+  .roster__head .count{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim)}
+
+  .roster__list{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--hairline);
+  }
+  .roster__row{
+    grid-column:1 / -1;
+    display:grid;grid-template-columns:80px 1fr 200px 120px;
+    align-items:center;gap:32px;
+    padding:22px 0;border-bottom:1px solid var(--hairline);
+    transition:background .2s;
+  }
+  .roster__row:hover{background:rgba(255,255,255,.02)}
+  .roster__row .n{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.06em;color:var(--ink-dim)}
+  .roster__row .name{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.5vw,36px);letter-spacing:.005em;line-height:1}
+  .roster__row .cat{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim)}
+  .roster__row .year{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--ink-dim);text-align:right}
+
+  /* Testimonial */
+  .quote{
+    max-width:1200px;margin:0 auto;padding:80px 36px 140px;
+    border-top:1px solid var(--hairline);
+    display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start;
+  }
+  .quote h3{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:500}
+  .quote blockquote{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4vw,56px);
+    line-height:1.12;text-transform:uppercase;letter-spacing:.005em;
+    text-wrap:balance;
+  }
+  .quote cite{
+    display:block;margin-top:24px;
+    font-style:normal;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim);
+  }
+
+  @media (max-width:800px){
+    .featured-client{grid-template-columns:1fr;padding:100px 20px 40px;gap:32px}
+    .roster{padding:48px 20px}
+    .roster__row{grid-template-columns:auto 1fr;gap:8px 16px;padding:16px 0}
+    .roster__row .n{grid-row:1/3}
+    .roster__row .cat,.roster__row .year{display:none}
+    .quote{grid-template-columns:1fr;padding:48px 20px 80px;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Primary">
+  <a href="Aaron Hampton.html" class="home-mark">AARON HAMPTON</a>
+  <ul>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="clients.html" class="is-active">Clients</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-head">
+  <div class="page-head__bg" style="background-image:url('assets/header-clients.jpg')"></div>
+  <h1 class="page-head__title">Clients</h1>
+  <p class="page-head__lead">Brands, schools, artists, and independent producers who have brought me in. A working list, updated as projects ship.</p>
+</header>
+
+<section class="featured-client">
+  <div class="featured-client__card">
+    <img src="assets/towson.png" alt="Towson University Tigers" />
+  </div>
+  <div class="featured-client__copy">
+    <span class="eyebrow">Featured</span>
+    <h2>Towson<br/>University</h2>
+    <p>Ongoing work with Towson athletics and admissions, from sideline highlights to long-form campus stories. Multiple projects across multiple seasons.</p>
+    <a href="work.html" class="link-line work-link">See the work</a>
+  </div>
+</section>
+
+<section class="roster">
+  <div class="roster__head">
+    <h2>The Full Roster</h2>
+    <span class="count"><span id="clientCount">14</span> Clients</span>
+  </div>
+  <div class="roster__list" id="rosterList">
+    <div class="roster__row"><span class="n">01</span><span class="name">Towson University</span><span class="cat">Education / Sport</span><span class="year">2024 — Present</span></div>
+    <div class="roster__row"><span class="n">02</span><span class="name">Morgan State University</span><span class="cat">Education</span><span class="year">2025</span></div>
+    <div class="roster__row"><span class="n">03</span><span class="name">Kappa Alpha Psi</span><span class="cat">Brand / Editorial</span><span class="year">2025</span></div>
+    <div class="roster__row"><span class="n">04</span><span class="name">Coastal Crab Co.</span><span class="cat">Commercial</span><span class="year">2025</span></div>
+    <div class="roster__row"><span class="n">05</span><span class="name">Patuxent Coffee Roasters</span><span class="cat">Commercial</span><span class="year">2025</span></div>
+    <div class="roster__row"><span class="n">06</span><span class="name">Cedar &amp; Iron</span><span class="cat">Apparel</span><span class="year">2024</span></div>
+    <div class="roster__row"><span class="n">07</span><span class="name">Northpoint Records</span><span class="cat">Music</span><span class="year">2024</span></div>
+    <div class="roster__row"><span class="n">08</span><span class="name">Halcyon Studios</span><span class="cat">Production</span><span class="year">2024</span></div>
+    <div class="roster__row"><span class="n">09</span><span class="name">South Side Soul</span><span class="cat">Music</span><span class="year">2024</span></div>
+    <div class="roster__row"><span class="n">10</span><span class="name">Beacon House</span><span class="cat">Hospitality</span><span class="year">2023</span></div>
+    <div class="roster__row"><span class="n">11</span><span class="name">Charter Athletics</span><span class="cat">Sport</span><span class="year">2023</span></div>
+    <div class="roster__row"><span class="n">12</span><span class="name">Birchwood Capital</span><span class="cat">Editorial</span><span class="year">2023</span></div>
+    <div class="roster__row"><span class="n">13</span><span class="name">Harbor Light Films</span><span class="cat">Production</span><span class="year">2022</span></div>
+    <div class="roster__row"><span class="n">14</span><span class="name">Meridian Outfitters</span><span class="cat">Apparel</span><span class="year">2022</span></div>
+  </div>
+</section>
+
+<section class="quote">
+  <div></div>
+  <div>
+    <blockquote>"Aaron is the kind of filmmaker you bring in once and then quietly try to keep on retainer. Calm on set, sharp in the edit, makes our brand look like a brand."</blockquote>
+    <cite>Terell Reed · Business Owner</cite>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="site-foot__big">
+    <span>Let's make<br/>something.</span><br/>
+    <a href="contact.html">hello@aaronhampton.tv</a>
+  </div>
+  <div>
+    <h4>Index</h4>
+    <ul>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="clients.html">Clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Elsewhere</h4>
+    <div class="socials">
+      <a href="https://instagram.com/aaronhampton" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram" /></a>
+      <a href="https://linkedin.com/in/aaronhampton" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+    </div>
+  </div>
+  <div class="site-foot__base"><span>© Aaron Hampton</span><span>Based in Waldorf, MD</span><span>Available worldwide</span></div>
+</footer>
+
+<div class="patina" aria-hidden="true"><div class="grain"></div><div class="scan"></div><div class="vig"></div></div>
+</body>
+</html>
