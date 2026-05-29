@@ -282,13 +282,13 @@
 <!-- HERO -->
 <section class="hero" data-screen-label="01 Hero">
   <div class="hero__media" id="heroMedia">
-    <video src="https://dl.dropboxusercontent.com/scl/fi/cse2ydtswbobxy6zae1tm/towson-vb-sep-15.mp4?rlkey=mvetpvx1n4a5kogg0dgeixxfk&raw=1" autoplay muted loop playsinline preload="auto"></video>
+    <video src="https://dl.dropboxusercontent.com/scl/fi/cse2ydtswbobxy6zae1tm/towson-vb-sep-15.mp4?rlkey=mvetpvx1n4a5kogg0dgeixxfk&raw=1" autoplay muted loop playsinline preload="metadata"></video>
   </div>
   <div class="hero__grade" aria-hidden="true"></div>
 
   <div class="hero__fg" id="heroFg">
     <div class="hero__eyebrow">Director, Cinematographer</div>
-    <img class="hero__name" src="assets/hb3kk-logo.png" alt="HB.3KK" style="width:min(82vw,1200px);height:auto;display:block;opacity:.35;mix-blend-mode:overlay;" />
+    <img class="hero__name" src="assets/hb3kk-logo.png" alt="HB.3KK" style="width:min(82vw,1200px);height:auto;display:block;" />
     <div class="hero__location">Based in Waldorf</div>
   </div>
 </section>
@@ -323,7 +323,7 @@
     <ol class="cinema" id="cinema">
       <li class="cinema__card" data-num="01">
         <div class="cinema__media">
-          <video src="https://dl.dropboxusercontent.com/scl/fi/zvgcbdr86ybhyjlavm2bv/Ellie-Gilbert-GOAL-Power-Play-9x16.MOV?rlkey=dfkx0k22ij5temr3jsthnjbeo&raw=1" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <video src="https://dl.dropboxusercontent.com/scl/fi/zvgcbdr86ybhyjlavm2bv/Ellie-Gilbert-GOAL-Power-Play-9x16.MOV?rlkey=dfkx0k22ij5temr3jsthnjbeo&raw=1" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block"></video>
         </div>
         <div class="cinema__grade"></div>
         <div class="cinema__bar t"></div>
@@ -332,7 +332,7 @@
 
       <li class="cinema__card" data-num="02">
         <div class="cinema__media">
-          <video src="https://dl.dropboxusercontent.com/scl/fi/27b2fhc0rrkecu4rjdtxj/VB-VS.-NO.mp4?rlkey=6yzuglqs8jfp30zd90x8367lq&raw=1" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <video src="https://dl.dropboxusercontent.com/scl/fi/27b2fhc0rrkecu4rjdtxj/VB-VS.-NO.mp4?rlkey=6yzuglqs8jfp30zd90x8367lq&raw=1" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block"></video>
         </div>
         <div class="cinema__grade"></div>
         <div class="cinema__bar t"></div>
@@ -341,7 +341,7 @@
 
       <li class="cinema__card" data-num="03">
         <div class="cinema__media">
-          <video src="https://dl.dropboxusercontent.com/scl/fi/e1ozn5grb5b2w6wz14v1n/WBB-VS-LEHIGH.mov?rlkey=j16aetqwzvfyh9nopra3dri7h&raw=1" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <video src="https://dl.dropboxusercontent.com/scl/fi/e1ozn5grb5b2w6wz14v1n/WBB-VS-LEHIGH.mov?rlkey=j16aetqwzvfyh9nopra3dri7h&raw=1" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block"></video>
         </div>
         <div class="cinema__grade"></div>
         <div class="cinema__bar t"></div>
@@ -443,8 +443,14 @@
     }
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.intersectionRatio > 0.55) e.target.classList.add('is-active');
-        else if (e.intersectionRatio < 0.3) e.target.classList.remove('is-active');
+        const v = e.target.querySelector('video');
+        if (e.intersectionRatio > 0.55) {
+          e.target.classList.add('is-active');
+          if (v) { v.play().catch(()=>{}); }
+        } else if (e.intersectionRatio < 0.3) {
+          e.target.classList.remove('is-active');
+          if (v) { v.pause(); }
+        }
       });
     }, { threshold: [0, 0.3, 0.55, 0.8, 1] });
     cards.forEach(c => io.observe(c));
@@ -469,9 +475,9 @@
 </script>
 <style>
   @keyframes focusIn{
-    0%   { filter: blur(40px); opacity: .25; transform: scale(1.06); }
-    60%  { filter: blur(6px);  opacity: .85; }
-    100% { filter: blur(0);    opacity: 1;   transform: scale(1); }
+    0%   { filter: blur(40px); opacity: 0; transform: scale(1.06); }
+    60%  { filter: blur(6px);  opacity: .35; }
+    100% { filter: blur(0);    opacity: .45; transform: scale(1); }
   }
 </style>
 </body>
