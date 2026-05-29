@@ -294,20 +294,29 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    Photographer/filmmaker micro-copy — route all small uppercase
    metadata captions to mono (contact-sheet vibe)
    ------------------------------------------------------------ */
-.about__eyebrow,
-.partner__eyebrow,
-.clients__eyebrow,
-.roster__head .count,
-.roster__row .cat,
+.eyebrow,
+.count,
+.cat,
+.filters__group,
+.filters__view,
+.work-row__cat,
+.work-row__num,
+.year,
 .quote h3,
 .quote__cite,
-.work__eyebrow,
-.work__filter,
-.work__row .role,
-.work__row .yr,
-.contact__eyebrow,
-.contact__label{
+.partner__eyebrow,
+.roster__row .n,
+.roster__head .count{
   font-family: var(--mono) !important;
   font-weight: 400;
   letter-spacing: .22em;
+  text-transform: uppercase;
 }
+
+/* Work-row client/title stay serif display, but small year/num caption mono */
+.work-row__client,
+.contact__email,
+.about-body p{
+  /* leave as-is — these are body/display */
+}
+
