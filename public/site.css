@@ -38,8 +38,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .site-nav{
   position:fixed;top:0;left:0;right:0;z-index:40;
   display:flex;justify-content:space-between;align-items:center;
-  padding:24px 36px;
-  mix-blend-mode:difference;  /* lets nav stay legible over light/dark frames */
+  padding:16px 36px;
+  background:rgba(10,10,11,.72);
+  backdrop-filter:saturate(160%) blur(14px);
+  -webkit-backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 .site-nav .home-mark{
   font-family:'Instrument Serif',Georgia,serif;
