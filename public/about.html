@@ -116,21 +116,69 @@
   <p class="page-head__lead">Director and cinematographer. I shoot commercial, music, documentary, and narrative work, in whatever order the year asks for.</p>
 </header>
 
-<section class="portrait">
-  <div class="frame">
-    <div class="frame__placeholder frame__placeholder--mono"></div>
-    <div class="frame__grade"></div>
+<section class="about-body" id="aboutBody">
+  <figure class="about-body__media">
+    <img src="assets/aaron-portrait.jpg" alt="Aaron Hampton on a rooftop in Baltimore with a gimbal-mounted camera" loading="lazy" decoding="async" />
+  </figure>
+  <div>
+    <h2 data-type="The Long Version">&nbsp;</h2>
+    <div class="prose" id="aboutProse">
+      <p data-type="I came to filmmaking through still photography, the long way around. Cameras have always been the easy part. Knowing what to point them at is the work.">&nbsp;</p>
+      <p data-type="My favorite shoots happen at the edge of the day, when the light gets honest. I work small and quiet. I keep crews lean. I edit my own pictures whenever a client lets me.">&nbsp;</p>
+      <p data-type="The point is to make something a person remembers a week later, not just something that performs on a feed.">&nbsp;</p>
+    </div>
   </div>
 </section>
 
-<section class="about-body">
-  <h2>The Long Version</h2>
-  <div class="prose">
-    <p>I came to filmmaking through still photography, the long way around. Cameras have always been the easy part. Knowing what to point them at is the work.</p>
-    <p>My favorite shoots happen at the edge of the day, when the light gets honest. I work small and quiet. I keep crews lean. I edit my own pictures whenever a client lets me.</p>
-    <p>The point is to make something a person remembers a week later, not just something that performs on a feed.</p>
-  </div>
-</section>
+<script>
+  (function(){
+    const body = document.getElementById('aboutBody');
+    if (!body) return;
+    const targets = [body.querySelector('h2'), ...body.querySelectorAll('.prose p')];
+
+    function typeInto(el, text, speed){
+      return new Promise(resolve => {
+        el.textContent = '';
+        const caret = document.createElement('span');
+        caret.className = 'caret';
+        el.appendChild(caret);
+        el.classList.add('is-typing');
+        let i = 0;
+        const tick = () => {
+          if (i >= text.length){
+            el.classList.remove('is-typing');
+            el.classList.add('is-done');
+            caret.remove();
+            resolve();
+            return;
+          }
+          const ch = text.charAt(i++);
+          caret.insertAdjacentText('beforebegin', ch);
+          // variable speed for natural feel; pause longer on punctuation
+          const delay = /[.,]/.test(ch) ? speed*6 : (Math.random()*speed*0.8 + speed*0.6);
+          setTimeout(tick, delay);
+        };
+        tick();
+      });
+    }
+
+    let started = false;
+    const start = async () => {
+      if (started) return; started = true;
+      for (const el of targets){
+        const text = el.dataset.type || '';
+        const speed = el.tagName === 'H2' ? 55 : 22;
+        await typeInto(el, text, speed);
+        await new Promise(r => setTimeout(r, 180));
+      }
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) start();
+    }, { threshold: 0.2 });
+    io.observe(body);
+  })();
+</script>
 
 <section class="kit">
   <div class="kit__list">
