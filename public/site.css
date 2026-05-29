@@ -289,3 +289,25 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .site-foot{grid-template-columns:1fr;padding:48px 20px 24px;gap:32px}
   .site-foot__base{flex-direction:column;gap:10px}
 }
+
+/* ------------------------------------------------------------
+   Photographer/filmmaker micro-copy — route all small uppercase
+   metadata captions to mono (contact-sheet vibe)
+   ------------------------------------------------------------ */
+.about__eyebrow,
+.partner__eyebrow,
+.clients__eyebrow,
+.roster__head .count,
+.roster__row .cat,
+.quote h3,
+.quote__cite,
+.work__eyebrow,
+.work__filter,
+.work__row .role,
+.work__row .yr,
+.contact__eyebrow,
+.contact__label{
+  font-family: var(--mono) !important;
+  font-weight: 400;
+  letter-spacing: .22em;
+}
