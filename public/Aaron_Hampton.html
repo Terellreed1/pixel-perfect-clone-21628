@@ -272,7 +272,7 @@
     padding:clamp(72px,12vw,160px) 36px;
     border-top:1px solid rgba(255,255,255,.06);
   }
-  .intro-bio__inner{max-width:1100px;margin:0 auto;text-align:center}
+  .intro-bio__inner{max-width:1200px;margin:0 auto;text-align:left}
   .intro-bio__eyebrow{
     font-family:var(--mono);
     font-size:11px;letter-spacing:.32em;text-transform:uppercase;
@@ -282,8 +282,16 @@
     font-family:'Instrument Serif',serif;font-weight:400;
     font-size:clamp(24px,3.2vw,44px);line-height:1.25;letter-spacing:-.01em;
     color:rgba(244,239,230,.92);margin:0;
+    /* left-to-right wipe reveal */
+    background-image:linear-gradient(90deg, rgba(244,239,230,.95) 0%, rgba(244,239,230,.95) 50%, rgba(244,239,230,.18) 50%, rgba(244,239,230,.18) 100%);
+    background-size:200% 100%;
+    background-position:100% 0;
+    -webkit-background-clip:text;background-clip:text;
+    color:transparent;
+    transition:background-position 1.8s cubic-bezier(.2,.7,.2,1);
   }
-  .intro-bio__name{font-style:italic;color:#f4efe6}
+  .intro-bio.is-in .intro-bio__copy{background-position:0 0}
+  .intro-bio__name{font-style:italic}
   @media (max-width:760px){
     .intro-bio{padding:80px 24px}
   }
@@ -319,11 +327,11 @@
 </section>
 
 <!-- INTRO / BIO -->
-<section class="intro-bio">
+<section class="intro-bio" id="introBio">
   <div class="intro-bio__inner">
     <p class="intro-bio__eyebrow">About</p>
     <h2 class="intro-bio__copy">
-      <span class="intro-bio__name">HB.3KK</span>, otherwise known as <span class="intro-bio__name">Aaron Hampton</span>, is a director and cinematographer based in Waldorf, Maryland — crafting cinematic sports films and brand stories that move with intention, rhythm, and soul.
+      <span class="intro-bio__name">HB.3KK</span>, otherwise known as <span class="intro-bio__name">Aaron Hampton</span>, is a director and cinematographer based in Waldorf, Maryland, crafting cinematic sports films and brand stories.
     </h2>
   </div>
 </section>
@@ -507,6 +515,21 @@
   /* ============================================================
      FOCUS-IN keyframes (used by .hero__name only on this page)
      ============================================================ */
+
+  /* ============================================================
+     INTRO BIO — left-to-right wipe on scroll
+     ============================================================ */
+  (function bioReveal(){
+    const el = document.getElementById('introBio');
+    if (!el) return;
+    if (!('IntersectionObserver' in window)){ el.classList.add('is-in'); return; }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if (e.isIntersecting){ el.classList.add('is-in'); io.disconnect(); }
+      });
+    }, { threshold: 0.35 });
+    io.observe(el);
+  })();
 </script>
 <style>
   @keyframes focusIn{
