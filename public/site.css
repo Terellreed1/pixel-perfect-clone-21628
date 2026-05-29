@@ -9,6 +9,7 @@
   --ink-faint:rgba(244,239,230,.18);
   --accent:#f4efe6;        /* no colored accent — keep it monochrome */
   --hairline:rgba(244,239,230,.14);
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace; /* camera-metadata captions */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{
@@ -42,12 +43,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .site-nav .home-mark{
   font-family:'Instrument Serif',Georgia,serif;
-  font-size:18px;letter-spacing:.18em;
-  color:#fff;opacity:.9;
+  font-size:20px;letter-spacing:.04em;font-style:italic;
+  color:#fff;opacity:.95;
 }
 .site-nav ul{
   display:flex;gap:30px;list-style:none;
-  font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:500;
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:400;
 }
 .site-nav a{
   position:relative;color:#fff;opacity:.85;transition:opacity .2s;
@@ -148,15 +150,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .site-foot__big a:hover{border-color:var(--ink)}
 .site-foot h4{
-  font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
   color:var(--ink-dim);font-weight:500;margin-bottom:14px;
 }
 .site-foot ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.site-foot ul a{font-size:14px;opacity:.85;transition:opacity .2s}
+.site-foot ul a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;opacity:.85;transition:opacity .2s}
 .site-foot ul a:hover{opacity:1}
 .site-foot__base{
   grid-column:1 / -1;display:flex;justify-content:space-between;
-  font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--ink-dim);
   padding-top:32px;margin-top:24px;
   border-top:1px solid var(--hairline);
@@ -265,7 +269,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    Buttons / links
    ------------------------------------------------------------ */
 .link-line{
-  display:inline-block;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
   padding-bottom:4px;border-bottom:1px solid var(--ink-faint);
   transition:border-color .2s, padding .25s;
 }
@@ -283,3 +289,34 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .site-foot{grid-template-columns:1fr;padding:48px 20px 24px;gap:32px}
   .site-foot__base{flex-direction:column;gap:10px}
 }
+
+/* ------------------------------------------------------------
+   Photographer/filmmaker micro-copy — route all small uppercase
+   metadata captions to mono (contact-sheet vibe)
+   ------------------------------------------------------------ */
+.eyebrow,
+.count,
+.cat,
+.filters__group,
+.filters__view,
+.work-row__cat,
+.work-row__num,
+.year,
+.quote h3,
+.quote__cite,
+.partner__eyebrow,
+.roster__row .n,
+.roster__head .count{
+  font-family: var(--mono) !important;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+/* Work-row client/title stay serif display, but small year/num caption mono */
+.work-row__client,
+.contact__email,
+.about-body p{
+  /* leave as-is — these are body/display */
+}
+
