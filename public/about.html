@@ -114,11 +114,41 @@
   (function(){
     var p = document.getElementById('preloader');
     if(!p) return;
-    var hide = function(){ setTimeout(function(){ p.classList.add('is-hidden'); }, 350); };
-    if(document.readyState === 'complete'){ hide(); }
-    else { window.addEventListener('load', hide); }
-    // safety: never block more than 5s
-    setTimeout(hide, 5000);
+    var done = false;
+    var hide = function(){
+      if(done) return; done = true;
+      // small grace period so first paint lands behind the overlay
+      setTimeout(function(){ p.classList.add('is-hidden'); }, 250);
+    };
+    var waitForMedia = function(){
+      var imgs = Array.prototype.slice.call(document.images)
+        .filter(function(i){ return i.loading !== 'lazy'; });
+      var vids = Array.prototype.slice.call(document.querySelectorAll('video'))
+        .filter(function(v){ return v.autoplay; });
+      var pending = 0;
+      var maybeDone = function(){ if(pending === 0) hide(); };
+      imgs.forEach(function(img){
+        if(img.complete && img.naturalWidth > 0) return;
+        pending++;
+        var clear = function(){ pending--; maybeDone(); };
+        img.addEventListener('load', clear, {once:true});
+        img.addEventListener('error', clear, {once:true});
+      });
+      vids.forEach(function(v){
+        if(v.readyState >= 3) return;
+        pending++;
+        var clear = function(){ pending--; maybeDone(); };
+        v.addEventListener('canplay', clear, {once:true});
+        v.addEventListener('loadeddata', clear, {once:true});
+        v.addEventListener('error', clear, {once:true});
+      });
+      // require at least 2 animation frames so the layout settles
+      requestAnimationFrame(function(){ requestAnimationFrame(maybeDone); });
+    };
+    if(document.readyState === 'complete'){ waitForMedia(); }
+    else { window.addEventListener('load', waitForMedia); }
+    // hard safety so nothing can ever strand the overlay
+    setTimeout(hide, 8000);
   })();
 </script>
 
