@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>About — Aaron Hampton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  body{opacity:1;background:var(--bg)}
+
+  .portrait{
+    max-width:1400px;margin:60px auto 0;padding:0 36px;
+  }
+  .portrait .frame{aspect-ratio:21/9;border-radius:2px}
+
+  .about-body{
+    max-width:1400px;margin:0 auto;padding:100px 36px;
+    display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;
+  }
+  .about-body h2{
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);
+    font-weight:500;
+  }
+  .about-body .prose p{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(26px,3vw,42px);line-height:1.15;text-transform:uppercase;letter-spacing:.005em;
+    text-wrap:balance;margin-bottom:28px;
+  }
+  .about-body .prose p:last-child{margin-bottom:0}
+
+  /* Towson partner strip (replaces the facts row) */
+  .partner{
+    max-width:1400px;margin:0 auto;padding:80px 36px;
+    border-top:1px solid var(--hairline);
+    display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:center;
+  }
+  .partner__logo{
+    width:200px;height:200px;
+    background:#0d0d0e;border:1px solid var(--hairline);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .partner__logo img{max-width:70%;max-height:70%;width:auto}
+  .partner__copy{display:flex;flex-direction:column;gap:14px;max-width:36ch}
+  .partner__eyebrow{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim)}
+  .partner__name{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4.5vw,64px);line-height:.95;letter-spacing:.005em;text-transform:uppercase}
+  .partner__note{font-size:14px;line-height:1.55;color:var(--ink-dim);text-wrap:pretty}
+  .partner__link{justify-self:end}
+
+  /* Gear (no heading, just the grid) */
+  .kit{
+    max-width:1400px;margin:0 auto;padding:80px 36px 120px;
+    border-top:1px solid var(--hairline);
+  }
+  .kit__list{display:grid;grid-template-columns:repeat(4, 1fr);gap:48px}
+  .kit__list h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;margin-bottom:14px}
+  .kit__list ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .kit__list li{font-size:14px;color:var(--ink-dim);padding:6px 0;border-bottom:1px solid var(--hairline)}
+
+  /* Social block on about page */
+  .about-socials{
+    max-width:1400px;margin:0 auto;padding:60px 36px 100px;
+    border-top:1px solid var(--hairline);
+    display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;
+  }
+  .about-socials h3{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3vw,44px);letter-spacing:.04em;text-transform:uppercase;
+  }
+  .about-socials .socials a{width:48px;height:48px;border-radius:10px}
+  .about-socials .socials a img{width:30px;height:30px}
+
+  @media (max-width:800px){
+    .portrait{padding:0 20px}
+    .about-body{grid-template-columns:1fr;padding:60px 20px;gap:24px}
+    .partner{grid-template-columns:1fr;padding:48px 20px;gap:24px}
+    .partner__logo{width:160px;height:160px}
+    .partner__link{justify-self:start}
+    .kit{padding:48px 20px 80px}
+    .kit__list{grid-template-columns:1fr 1fr;gap:32px}
+    .about-socials{padding:40px 20px 60px;flex-direction:column;align-items:flex-start;gap:16px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Primary">
+  <a href="Aaron Hampton.html" class="home-mark">AARON HAMPTON</a>
+  <ul>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html" class="is-active">About</a></li>
+    <li><a href="clients.html">Clients</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-head">
+  <div class="page-head__bg" style="background-image:url('assets/header-about.jpg')"></div>
+  <h1 class="page-head__title">About</h1>
+  <p class="page-head__lead">Director and cinematographer. I shoot commercial, music, documentary, and narrative work, in whatever order the year asks for.</p>
+</header>
+
+<section class="portrait">
+  <div class="frame">
+    <div class="frame__placeholder frame__placeholder--mono"></div>
+    <div class="frame__grade"></div>
+  </div>
+</section>
+
+<section class="about-body">
+  <h2>The Long Version</h2>
+  <div class="prose">
+    <p>I came to filmmaking through still photography, the long way around. Cameras have always been the easy part. Knowing what to point them at is the work.</p>
+    <p>My favorite shoots happen at the edge of the day, when the light gets honest. I work small and quiet. I keep crews lean. I edit my own pictures whenever a client lets me.</p>
+    <p>The point is to make something a person remembers a week later, not just something that performs on a feed.</p>
+  </div>
+</section>
+
+<section class="kit">
+  <div class="kit__list">
+    <div>
+      <h3>Cameras</h3>
+      <ul>
+        <li>Sony FX3</li>
+        <li>Sony FX6</li>
+        <li>Sony a7S III</li>
+        <li>Blackmagic Pocket 6K</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Glass</h3>
+      <ul>
+        <li>Sigma 24-70 f/2.8</li>
+        <li>Sony 35mm f/1.4 GM</li>
+        <li>Sony 85mm f/1.4 GM</li>
+        <li>Laowa 12mm f/2.8</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support &amp; Movement</h3>
+      <ul>
+        <li>DJI RS3 Pro</li>
+        <li>DJI Mavic 3 Pro</li>
+        <li>Sliders &amp; rigs</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Sound &amp; Light</h3>
+      <ul>
+        <li>Sennheiser MKE 600</li>
+        <li>Sennheiser EW-DP Wireless</li>
+        <li>Aputure 600d / 300x</li>
+        <li>Aputure MC RGB kit</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="site-foot__big">
+    <span>Let's make<br/>something.</span><br/>
+    <a href="contact.html">hello@aaronhampton.tv</a>
+  </div>
+  <div>
+    <h4>Index</h4>
+    <ul>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="clients.html">Clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Elsewhere</h4>
+    <div class="socials">
+      <a href="https://instagram.com/aaronhampton" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram" /></a>
+      <a href="https://linkedin.com/in/aaronhampton" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+    </div>
+  </div>
+  <div class="site-foot__base">
+    <span>© Aaron Hampton</span>
+    <span>Based in Waldorf, MD</span>
+    <span>Available worldwide</span>
+  </div>
+</footer>
+
+<div class="patina" aria-hidden="true"><div class="grain"></div><div class="scan"></div><div class="vig"></div></div>
+</body>
+</html>

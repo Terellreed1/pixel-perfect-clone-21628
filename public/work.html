@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Work — Aaron Hampton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  body{opacity:1}
+
+  /* Filters */
+  .filters{
+    max-width:1400px;margin:0 auto;padding:48px 36px 24px;
+    display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+    border-bottom:1px solid var(--hairline);
+  }
+  .filters__group{display:flex;gap:6px;flex-wrap:wrap}
+  .filters button{
+    padding:9px 16px;border:1px solid var(--hairline);
+    font-size:11px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--ink);transition:border-color .2s, color .2s, background .2s;
+  }
+  .filters button:hover{border-color:var(--ink)}
+  .filters button.is-active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .filters__view{
+    font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim);
+  }
+
+  /* Project list (rows, not a tight grid — more editorial) */
+  .work-list{padding:24px 36px 120px;max-width:1400px;margin:0 auto}
+  .work-row{
+    display:grid;grid-template-columns:80px 1fr 240px 200px 24px;
+    align-items:center;gap:32px;
+    padding:24px 0;
+    border-bottom:1px solid var(--hairline);
+    cursor:pointer;position:relative;
+    transition:background .2s;
+  }
+  .work-row:hover{background:rgba(255,255,255,.02)}
+  .work-row__num{
+    font-family:'Bebas Neue',sans-serif;font-size:18px;
+    letter-spacing:.06em;color:var(--ink-dim);
+  }
+  .work-row__title{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3.5vw,52px);
+    letter-spacing:.005em;line-height:1;
+  }
+  .work-row__client{
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);
+  }
+  .work-row__cat{
+    font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim);
+  }
+  .work-row__arrow{
+    font-size:18px;color:var(--ink-dim);transition:transform .25s, color .25s;
+    justify-self:end;
+  }
+  .work-row:hover .work-row__arrow{color:var(--ink);transform:translateX(6px)}
+  .work-row__year{
+    font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.06em;color:var(--ink-dim);
+  }
+
+  /* Floating thumbnail that follows cursor */
+  .thumb{
+    position:fixed;width:280px;aspect-ratio:4/5;
+    z-index:35;pointer-events:none;opacity:0;
+    transform:translate(-50%,-50%) scale(.95);
+    transition:opacity .25s, transform .35s cubic-bezier(.2,.7,.2,1);
+    overflow:hidden;
+  }
+  .thumb.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .thumb .frame__placeholder{position:absolute;inset:0}
+
+  @media (max-width:800px){
+    .work-row{
+      grid-template-columns:auto 1fr;gap:8px 16px;padding:18px 0;
+    }
+    .work-row__num{grid-row:1/3}
+    .work-row__client,.work-row__cat,.work-row__year{display:none}
+    .work-row__arrow{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+    .filters{padding:32px 20px 20px}
+    .work-list{padding:16px 20px 80px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Primary">
+  <a href="Aaron Hampton.html" class="home-mark">AARON HAMPTON</a>
+  <ul>
+    <li><a href="work.html" class="is-active">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="clients.html">Clients</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-head">
+  <div class="page-head__bg" style="background-image:url('assets/header-work.jpg')"></div>
+  <h1 class="page-head__title">Work</h1>
+  <p class="page-head__lead">A working index of recent and selected projects. Filter by category or scroll. Each line opens a case study with stills, credits, and the long version of the reel.</p>
+</header>
+
+<div class="filters" role="tablist" aria-label="Filter projects by category">
+  <div class="filters__group">
+    <button class="is-active" data-cat="all">All</button>
+    <button data-cat="commercial">Commercial</button>
+    <button data-cat="music">Music</button>
+    <button data-cat="documentary">Documentary</button>
+    <button data-cat="narrative">Narrative</button>
+    <button data-cat="sport">Sport</button>
+  </div>
+  <span class="filters__view"><span id="countShown">12</span> Projects</span>
+</div>
+
+<section class="work-list" id="workList">
+  <!-- Each row: data-cat, data-thumb (placeholder class suffix) -->
+  <article class="work-row" data-cat="sport" data-thumb="warm">
+    <span class="work-row__num">01</span>
+    <h2 class="work-row__title">Roar of the Tigers</h2>
+    <span class="work-row__client">Towson University</span>
+    <span class="work-row__cat">Sport / Brand</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="commercial" data-thumb="warm">
+    <span class="work-row__num">02</span>
+    <h2 class="work-row__title">Off Season</h2>
+    <span class="work-row__client">Brand · Confidential</span>
+    <span class="work-row__cat">Commercial</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="narrative" data-thumb="cool">
+    <span class="work-row__num">03</span>
+    <h2 class="work-row__title">Cold Light</h2>
+    <span class="work-row__client">Self-initiated</span>
+    <span class="work-row__cat">Short Film</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="documentary" data-thumb="ember">
+    <span class="work-row__num">04</span>
+    <h2 class="work-row__title">Brick &amp; Ember</h2>
+    <span class="work-row__client">Independent</span>
+    <span class="work-row__cat">Documentary</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="music" data-thumb="green">
+    <span class="work-row__num">05</span>
+    <h2 class="work-row__title">Field Notes</h2>
+    <span class="work-row__client">Artist TBA</span>
+    <span class="work-row__cat">Music Video</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="commercial" data-thumb="mono">
+    <span class="work-row__num">06</span>
+    <h2 class="work-row__title">Quiet Engine</h2>
+    <span class="work-row__client">Automotive Brand</span>
+    <span class="work-row__cat">Commercial</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="documentary" data-thumb="warm">
+    <span class="work-row__num">07</span>
+    <h2 class="work-row__title">Tidewater</h2>
+    <span class="work-row__client">Independent</span>
+    <span class="work-row__cat">Documentary</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="music" data-thumb="ember">
+    <span class="work-row__num">08</span>
+    <h2 class="work-row__title">Gospel Hour</h2>
+    <span class="work-row__client">Independent Artist</span>
+    <span class="work-row__cat">Music Video</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="commercial" data-thumb="cool">
+    <span class="work-row__num">09</span>
+    <h2 class="work-row__title">Long Way Home</h2>
+    <span class="work-row__client">Travel Brand</span>
+    <span class="work-row__cat">Commercial</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="sport" data-thumb="green">
+    <span class="work-row__num">10</span>
+    <h2 class="work-row__title">Practice Tape</h2>
+    <span class="work-row__client">Towson Athletics</span>
+    <span class="work-row__cat">Sport</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="narrative" data-thumb="mono">
+    <span class="work-row__num">11</span>
+    <h2 class="work-row__title">Salt &amp; Static</h2>
+    <span class="work-row__client">Festival Submission</span>
+    <span class="work-row__cat">Short Film</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+  <article class="work-row" data-cat="commercial" data-thumb="ember">
+    <span class="work-row__num">12</span>
+    <h2 class="work-row__title">Mile Marker</h2>
+    <span class="work-row__client">Outdoor Brand</span>
+    <span class="work-row__cat">Commercial</span>
+    <span class="work-row__arrow">→</span>
+  </article>
+</section>
+
+<!-- Hover thumbnail -->
+<div class="thumb frame" id="hoverThumb" aria-hidden="true">
+  <div class="frame__placeholder frame__placeholder--warm"></div>
+  <div class="frame__grade"></div>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot__big">
+    <span>Let's make<br/>something.</span><br/>
+    <a href="contact.html">hello@aaronhampton.tv</a>
+  </div>
+  <div>
+    <h4>Index</h4>
+    <ul>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="clients.html">Clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Elsewhere</h4>
+    <div class="socials">
+      <a href="https://instagram.com/aaronhampton" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram" /></a>
+      <a href="https://linkedin.com/in/aaronhampton" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+    </div>
+  </div>
+  <div class="site-foot__base">
+    <span>© Aaron Hampton</span>
+    <span>Based in Waldorf, MD</span>
+    <span>Available worldwide</span>
+  </div>
+</footer>
+
+<div class="patina" aria-hidden="true">
+  <div class="grain"></div>
+  <div class="scan"></div>
+  <div class="vig"></div>
+</div>
+
+<script>
+  // Filtering
+  const buttons = document.querySelectorAll('.filters button');
+  const rows = document.querySelectorAll('.work-row');
+  const count = document.getElementById('countShown');
+  buttons.forEach(b => b.addEventListener('click', () => {
+    buttons.forEach(x => x.classList.remove('is-active'));
+    b.classList.add('is-active');
+    const cat = b.dataset.cat;
+    let n = 0;
+    rows.forEach(r => {
+      const show = cat === 'all' || r.dataset.cat === cat;
+      r.style.display = show ? '' : 'none';
+      if (show) n++;
+    });
+    count.textContent = n;
+  }));
+
+  // Hover thumbnail follows cursor
+  const thumb = document.getElementById('hoverThumb');
+  const thumbPh = thumb.querySelector('.frame__placeholder');
+  let active = false;
+  rows.forEach(r => {
+    r.addEventListener('mouseenter', () => {
+      active = true;
+      thumbPh.className = 'frame__placeholder frame__placeholder--' + (r.dataset.thumb || 'warm');
+      thumb.classList.add('show');
+    });
+    r.addEventListener('mouseleave', () => {
+      active = false;
+      thumb.classList.remove('show');
+    });
+  });
+  document.addEventListener('mousemove', e => {
+    if (!active) return;
+    thumb.style.left = e.clientX + 'px';
+    thumb.style.top = e.clientY + 'px';
+  });
+</script>
+</body>
+</html>
