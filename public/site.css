@@ -203,8 +203,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    ------------------------------------------------------------ */
 .light-leak{
   position:relative;height:120px;width:100%;overflow:hidden;
-  background:#0a0a0b;isolation:isolate;
+  background:transparent;isolation:isolate;
+  /* fade the divider edges into the surrounding sections */
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 28%, #000 72%, transparent 100%);
+          mask-image:linear-gradient(180deg, transparent 0%, #000 28%, #000 72%, transparent 100%);
+  margin-top:-1px;margin-bottom:-1px; /* kill hairline seams */
 }
+
 .light-leak::before{
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,.04) 50%, transparent 100%);
