@@ -515,6 +515,21 @@
   /* ============================================================
      FOCUS-IN keyframes (used by .hero__name only on this page)
      ============================================================ */
+
+  /* ============================================================
+     INTRO BIO — left-to-right wipe on scroll
+     ============================================================ */
+  (function bioReveal(){
+    const el = document.getElementById('introBio');
+    if (!el) return;
+    if (!('IntersectionObserver' in window)){ el.classList.add('is-in'); return; }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if (e.isIntersecting){ el.classList.add('is-in'); io.disconnect(); }
+      });
+    }, { threshold: 0.35 });
+    io.observe(el);
+  })();
 </script>
 <style>
   @keyframes focusIn{
