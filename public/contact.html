@@ -287,6 +287,81 @@
     window.scrollTo({top:0, behavior:'smooth'});
   });
 </script>
+<script>
+  (function(){
+    var form     = document.getElementById('contactForm');
+    if (!form) return;
+    var steps    = form.querySelectorAll('.form__step');
+    var bar      = document.getElementById('stepBar');
+    var label    = document.getElementById('stepLabel');
+    var btnBack  = document.getElementById('btnBack');
+    var btnNext  = document.getElementById('btnNext');
+    var btnNextL = document.getElementById('btnNextLabel');
+    var data     = { type:'', timeline:'', budget:'' };
+    var cur      = 1, total = steps.length;
+
+    // Chip selection
+    form.querySelectorAll('.form__chips').forEach(function(group){
+      var field = group.dataset.field;
+      group.addEventListener('click', function(e){
+        var b = e.target.closest('button'); if(!b) return;
+        group.querySelectorAll('button').forEach(function(x){ x.classList.remove('is-active'); });
+        b.classList.add('is-active');
+        data[field] = b.dataset.val;
+      });
+    });
+
+    function render(){
+      steps.forEach(function(s){
+        s.classList.toggle('is-active', +s.dataset.step === cur);
+      });
+      bar.style.setProperty('--p', (cur/total*100) + '%');
+      label.textContent = 'Step ' + cur + ' / ' + total;
+      btnBack.disabled = cur === 1;
+      btnNextL.textContent = cur === total ? 'Send' : 'Next';
+    }
+
+    function valid(){
+      if (cur === 1) return !!data.type      || (alert('Pick a project type.'), false);
+      if (cur === 2) return !!data.timeline  || (alert('Pick a timeline.'), false);
+      if (cur === 3) return !!data.budget    || (alert('Pick a budget.'), false);
+      if (cur === 4){
+        var n = form.querySelector('#f-name').value.trim();
+        var e = form.querySelector('#f-email').value.trim();
+        var m = form.querySelector('#f-msg').value.trim();
+        if (!n || !e || !m){ alert('Add your name, email, and a short pitch.'); return false; }
+        return true;
+      }
+      return true;
+    }
+
+    btnBack.addEventListener('click', function(){
+      if (cur > 1){ cur--; render(); }
+    });
+
+    btnNext.addEventListener('click', function(){
+      if (!valid()) return;
+      if (cur < total){ cur++; render(); return; }
+      // Final — open mail client with everything composed
+      var name  = form.querySelector('#f-name').value.trim();
+      var email = form.querySelector('#f-email').value.trim();
+      var msg   = form.querySelector('#f-msg').value.trim();
+      var body =
+        'Project Type: ' + data.type      + '\n' +
+        'Timeline:     ' + data.timeline  + '\n' +
+        'Budget:       ' + data.budget    + '\n' +
+        'From:         ' + name + ' <' + email + '>\n\n' +
+        msg;
+      var href = 'mailto:hello@aaronhampton.tv'
+        + '?subject=' + encodeURIComponent('New project — ' + (data.type || 'inquiry'))
+        + '&body='    + encodeURIComponent(body);
+      window.location.href = href;
+      form.classList.add('sent');
+    });
+
+    render();
+  })();
+</script>
 <script src="site.js" defer></script>
 </body>
 </html>
