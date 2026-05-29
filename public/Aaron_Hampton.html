@@ -629,6 +629,28 @@
     }, { threshold: 0.35 });
     io.observe(el);
   })();
+
+  /* ============================================================
+     REACTIVE HERO — drive --hero-progress from scroll position
+     ============================================================ */
+  (function reactiveHero(){
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    let ticking = false;
+    function update(){
+      const h = hero.offsetHeight || window.innerHeight;
+      const y = window.scrollY || window.pageYOffset;
+      const p = Math.max(0, Math.min(1, y / h));
+      hero.style.setProperty('--hero-progress', p.toFixed(3));
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }, { passive:true });
+    update();
+  })();
 </script>
 <style>
   @keyframes focusIn{
