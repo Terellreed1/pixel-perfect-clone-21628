@@ -418,3 +418,60 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   0%,100%{opacity:.35;}
   50%{opacity:1;}
 }
+
+/* ------------------------------------------------------------
+   Mobile polish — tighter spacing, safer touch targets,
+   prevent any accidental horizontal overflow
+   ------------------------------------------------------------ */
+html,body{max-width:100%;overflow-x:hidden}
+img,video,iframe,svg{max-width:100%;height:auto}
+
+@media (max-width:760px){
+  /* Nav — tighter so 5 items always fit */
+  .site-nav{padding:14px 16px}
+  .site-nav ul{gap:12px;font-size:10px;letter-spacing:.16em;flex-wrap:wrap;justify-content:center}
+  .site-nav a{padding:8px 2px} /* bigger tap target */
+
+  /* Page headers — single column, breathable */
+  .page-head{grid-template-columns:1fr;padding:120px 18px 36px;gap:18px;min-height:auto}
+  .page-head__title{font-size:clamp(56px,16vw,120px);line-height:.9}
+  .page-head__lead{font-size:14px;line-height:1.55;max-width:100%}
+
+  /* Footer — single column, readable */
+  .site-foot{grid-template-columns:1fr;padding:48px 18px 24px;gap:28px}
+  .site-foot__big{font-size:clamp(36px,10vw,56px)}
+  .site-foot__base{flex-direction:column;align-items:flex-start;gap:8px;font-size:9px}
+  .socials a{width:44px;height:44px}
+  .socials a img{width:38px;height:38px}
+
+  /* Trusted marquee — stack */
+  .trusted{padding:56px 18px}
+  .trusted__inner{grid-template-columns:1fr;gap:24px}
+  .trusted__logos{gap:24px;justify-content:flex-start}
+  .trusted__logo img{height:48px}
+
+  /* Section spacing global */
+  .quote-block{padding:64px 18px}
+  .quote-block__mark{font-size:clamp(120px,28vw,200px)}
+  .quote-block__text{font-size:clamp(28px,7.5vw,56px)}
+
+  /* Light-leak divider — smaller on phones */
+  .light-leak{height:70px}
+
+  /* Preloader orbit slightly smaller */
+  .preloader__orbit{width:52px;height:52px}
+  .preloader__orbit .b1,.preloader__orbit .b2,.preloader__orbit .b3{
+    transform-origin:0 0;
+  }
+  .preloader__orbit .b1{transform:rotate(0deg)   translateX(22px)}
+  .preloader__orbit .b2{transform:rotate(120deg) translateX(22px)}
+  .preloader__orbit .b3{transform:rotate(240deg) translateX(22px)}
+
+  /* Make audio toggle thumb-friendly */
+  .audio{right:14px;bottom:14px;padding:10px 14px;font-size:10px}
+}
+
+@media (max-width:420px){
+  .site-nav ul{gap:10px;font-size:9.5px}
+  .page-head{padding:108px 16px 28px}
+}
