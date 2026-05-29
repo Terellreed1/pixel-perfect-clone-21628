@@ -315,16 +315,21 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" data-screen-label="01 Hero">
+<section class="hero" data-screen-label="01 Hero" id="hero">
   <div class="hero__media" id="heroMedia">
     <video src="https://dl.dropboxusercontent.com/scl/fi/cse2ydtswbobxy6zae1tm/towson-vb-sep-15.mp4?rlkey=mvetpvx1n4a5kogg0dgeixxfk&raw=1" autoplay muted loop playsinline preload="metadata"></video>
   </div>
   <div class="hero__grade" aria-hidden="true"></div>
+  <div class="hero__vignette" aria-hidden="true"></div>
+  <div class="hero__grain" aria-hidden="true"></div>
 
   <div class="hero__fg" id="heroFg">
     <img class="hero__name" src="assets/hb3kk-logo.png" alt="HB.3KK — Aaron Hampton" style="width:min(82vw,1200px);height:auto;display:block;" />
   </div>
 </section>
+
+<!-- LIGHT LEAK DIVIDER -->
+<div class="light-leak" aria-hidden="true"><span></span></div>
 
 <!-- INTRO / BIO -->
 <section class="intro-bio" id="introBio">
@@ -335,6 +340,9 @@
     </h2>
   </div>
 </section>
+
+<!-- LIGHT LEAK DIVIDER -->
+<div class="light-leak light-leak--alt" aria-hidden="true"><span></span></div>
 
 <button class="audio" id="audioBtn" aria-pressed="false" aria-label="Toggle audio">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
