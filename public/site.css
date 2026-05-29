@@ -475,3 +475,10 @@ img,video,iframe,svg{max-width:100%;height:auto}
   .site-nav ul{gap:10px;font-size:9.5px}
   .page-head{padding:108px 16px 28px}
 }
+
+/* Kill hairline borders directly adjacent to a light-leak so only the
+   animation remains — no visible seam line above or below the divider */
+.light-leak{border:0 !important}
+.light-leak + *{border-top:0 !important}
+*:has(> .light-leak:last-child){border-bottom:0 !important}
+*:has(+ .light-leak){border-bottom:0 !important}
