@@ -43,12 +43,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .site-nav .home-mark{
   font-family:'Instrument Serif',Georgia,serif;
-  font-size:18px;letter-spacing:.18em;
-  color:#fff;opacity:.9;
+  font-size:20px;letter-spacing:.04em;font-style:italic;
+  color:#fff;opacity:.95;
 }
 .site-nav ul{
   display:flex;gap:30px;list-style:none;
-  font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:500;
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:400;
 }
 .site-nav a{
   position:relative;color:#fff;opacity:.85;transition:opacity .2s;
