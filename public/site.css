@@ -359,3 +359,57 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   /* leave as-is — these are body/display */
 }
 
+
+/* ------------------------------------------------------------
+   Preloader — minimal black overlay, rotating dot + orbiting bubbles,
+   light-leak sweep, fades out on window load
+   ------------------------------------------------------------ */
+.preloader{
+  position:fixed;inset:0;z-index:9999;background:#000;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;isolation:isolate;
+  transition:opacity .7s ease, visibility 0s linear .7s;
+}
+.preloader.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.preloader__leak{
+  position:absolute;inset:0;pointer-events:none;
+}
+.preloader__leak span{
+  position:absolute;top:50%;left:-30%;
+  width:160%;height:60%;transform:translateY(-50%) rotate(-4deg);
+  background:
+    radial-gradient(60% 50% at 20% 50%, rgba(255,140,60,.35) 0%, rgba(255,90,50,.15) 30%, transparent 65%),
+    radial-gradient(45% 50% at 60% 50%, rgba(255,200,90,.25) 0%, transparent 60%),
+    radial-gradient(35% 50% at 85% 50%, rgba(220,40,40,.25) 0%, transparent 65%);
+  filter:blur(40px);mix-blend-mode:screen;opacity:0;
+  animation:leakSweep 6s ease-in-out infinite;
+}
+.preloader__orbit{
+  position:relative;width:64px;height:64px;
+  animation:preSpin 1.6s linear infinite;
+}
+.preloader__orbit .dot{
+  position:absolute;top:50%;left:50%;
+  width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;
+  background:rgba(244,239,230,.95);
+  box-shadow:0 0 12px rgba(244,239,230,.5);
+}
+.preloader__orbit .bubble{
+  position:absolute;top:50%;left:50%;border-radius:50%;
+  background:rgba(244,239,230,.85);
+  transform-origin:0 0;
+}
+.preloader__orbit .b1{width:6px;height:6px;margin:-3px 0 0 -3px;
+  transform:rotate(0deg) translateX(28px);
+  animation:preBubble 1.6s ease-in-out infinite}
+.preloader__orbit .b2{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;
+  transform:rotate(120deg) translateX(28px);
+  animation:preBubble 1.6s ease-in-out infinite .2s}
+.preloader__orbit .b3{width:4px;height:4px;margin:-2px 0 0 -2px;
+  transform:rotate(240deg) translateX(28px);
+  animation:preBubble 1.6s ease-in-out infinite .4s}
+@keyframes preSpin{to{transform:rotate(360deg)}}
+@keyframes preBubble{
+  0%,100%{opacity:.35;}
+  50%{opacity:1;}
+}
