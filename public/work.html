@@ -208,19 +208,23 @@
     count.textContent = n;
   }));
 
-  // Hover thumbnail follows cursor
+  // Hover thumbnail follows cursor + plays the row's video
   const thumb = document.getElementById('hoverThumb');
-  const thumbPh = thumb.querySelector('.frame__placeholder');
+  const thumbVid = document.getElementById('hoverVideo');
   let active = false;
   rows.forEach(r => {
     r.addEventListener('mouseenter', () => {
+      const src = r.dataset.video;
+      if (!src) { thumb.classList.remove('show'); return; }
       active = true;
-      thumbPh.className = 'frame__placeholder frame__placeholder--' + (r.dataset.thumb || 'warm');
+      if (thumbVid.src !== src) thumbVid.src = src;
+      thumbVid.play().catch(()=>{});
       thumb.classList.add('show');
     });
     r.addEventListener('mouseleave', () => {
       active = false;
       thumb.classList.remove('show');
+      thumbVid.pause();
     });
   });
   document.addEventListener('mousemove', e => {
