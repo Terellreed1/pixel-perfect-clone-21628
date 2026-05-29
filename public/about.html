@@ -110,12 +110,55 @@
 
 <section class="about-body">
   <h2>The Long Version</h2>
-  <div class="prose">
-    <p>I came to filmmaking through still photography, the long way around. Cameras have always been the easy part. Knowing what to point them at is the work.</p>
-    <p>My favorite shoots happen at the edge of the day, when the light gets honest. I work small and quiet. I keep crews lean. I edit my own pictures whenever a client lets me.</p>
-    <p>The point is to make something a person remembers a week later, not just something that performs on a feed.</p>
+  <div class="prose" id="typed-prose">
+    <p data-typed="I came to filmmaking through still photography, the long way around. Cameras have always been the easy part. Knowing what to point them at is the work."></p>
+    <p data-typed="My favorite shoots happen at the edge of the day, when the light gets honest. I work small and quiet. I keep crews lean. I edit my own pictures whenever a client lets me."></p>
+    <p data-typed="The point is to make something a person remembers a week later, not just something that performs on a feed."></p>
   </div>
 </section>
+
+<style>
+  #typed-prose p{min-height:1.6em}
+  #typed-prose .caret{display:inline-block;width:.55ch;background:currentColor;animation:caretBlink 1s steps(1) infinite;margin-left:2px;transform:translateY(2px);height:1em;vertical-align:baseline}
+  @keyframes caretBlink{50%{opacity:0}}
+</style>
+<script>
+(function(){
+  const paras = Array.from(document.querySelectorAll('#typed-prose p[data-typed]'));
+  if(!paras.length) return;
+  let started = false;
+  const speed = 18, jitter = 28, pause = 450;
+  function type(i){
+    if(i >= paras.length) return;
+    const el = paras[i];
+    const text = el.dataset.typed;
+    el.innerHTML = '<span class="t"></span><span class="caret"></span>';
+    const span = el.querySelector('.t');
+    const caret = el.querySelector('.caret');
+    let n = 0;
+    function step(){
+      span.textContent = text.slice(0, ++n);
+      if(n < text.length){
+        setTimeout(step, speed + Math.random()*jitter);
+      } else {
+        caret.remove();
+        setTimeout(()=>type(i+1), pause);
+      }
+    }
+    step();
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !started){
+        started = true;
+        type(0);
+        io.disconnect();
+      }
+    });
+  },{threshold:.2});
+  io.observe(document.getElementById('typed-prose'));
+})();
+</script>
 
 <section class="kit">
   <div class="kit__list">
