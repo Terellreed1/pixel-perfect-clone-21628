@@ -65,14 +65,15 @@
 
   /* Floating thumbnail that follows cursor */
   .thumb{
-    position:fixed;width:280px;aspect-ratio:4/5;
+    position:fixed;width:340px;aspect-ratio:16/9;
     z-index:35;pointer-events:none;opacity:0;
     transform:translate(-50%,-50%) scale(.95);
     transition:opacity .25s, transform .35s cubic-bezier(.2,.7,.2,1);
-    overflow:hidden;
+    overflow:hidden;background:#000;
   }
   .thumb.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
-  .thumb .frame__placeholder{position:absolute;inset:0}
+  .work-row--soon{opacity:.55;cursor:default}
+  .work-row--soon:hover{background:transparent}
 
   @media (max-width:800px){
     .work-row{
