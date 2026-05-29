@@ -37,25 +37,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    ------------------------------------------------------------ */
 .site-nav{
   position:fixed;top:0;left:0;right:0;z-index:40;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:16px 36px;
-  background:rgba(10,10,11,.72);
-  backdrop-filter:saturate(160%) blur(14px);
-  -webkit-backdrop-filter:saturate(160%) blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.site-nav .home-mark{
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:20px;letter-spacing:.04em;font-style:italic;
-  color:#fff;opacity:.95;
+  display:flex;justify-content:center;align-items:center;
+  padding:28px 36px;
 }
 .site-nav ul{
-  display:flex;gap:30px;list-style:none;
+  display:flex;gap:36px;list-style:none;
   font-family:var(--mono);
   font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:400;
 }
 .site-nav a{
-  position:relative;color:#fff;opacity:.85;transition:opacity .2s;
+  position:relative;color:#fff;opacity:.75;transition:opacity .2s;
   padding:6px 0;
 }
 .site-nav a:hover{opacity:1}
