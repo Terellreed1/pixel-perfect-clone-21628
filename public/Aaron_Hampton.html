@@ -443,8 +443,14 @@
     }
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.intersectionRatio > 0.55) e.target.classList.add('is-active');
-        else if (e.intersectionRatio < 0.3) e.target.classList.remove('is-active');
+        const v = e.target.querySelector('video');
+        if (e.intersectionRatio > 0.55) {
+          e.target.classList.add('is-active');
+          if (v) { v.play().catch(()=>{}); }
+        } else if (e.intersectionRatio < 0.3) {
+          e.target.classList.remove('is-active');
+          if (v) { v.pause(); }
+        }
       });
     }, { threshold: [0, 0.3, 0.55, 0.8, 1] });
     cards.forEach(c => io.observe(c));
