@@ -269,7 +269,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    Buttons / links
    ------------------------------------------------------------ */
 .link-line{
-  display:inline-block;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
   padding-bottom:4px;border-bottom:1px solid var(--ink-faint);
   transition:border-color .2s, padding .25s;
 }
