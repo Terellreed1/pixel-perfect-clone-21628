@@ -482,3 +482,26 @@ img,video,iframe,svg{max-width:100%;height:auto}
 .light-leak + *{border-top:0 !important}
 *:has(> .light-leak:last-child){border-bottom:0 !important}
 *:has(+ .light-leak){border-bottom:0 !important}
+
+/* ------------------------------------------------------------
+   Iris / aperture page transition overlay
+   ------------------------------------------------------------ */
+.iris{
+  position:fixed;inset:0;z-index:9998;pointer-events:none;
+  --ix:50%;--iy:50%;
+}
+.iris__disc{
+  position:absolute;left:var(--ix);top:var(--iy);
+  width:1px;height:1px;border-radius:50%;background:#000;
+  transform:translate(-50%,-50%) scale(0);
+  transition:transform .55s cubic-bezier(.7,0,.2,1);
+  will-change:transform;
+}
+.iris.is-closing{pointer-events:auto}
+.iris.is-closing .iris__disc{
+  /* big enough to cover any viewport from any origin */
+  transform:translate(-50%,-50%) scale(3200);
+}
+@media (prefers-reduced-motion: reduce){
+  .iris__disc{transition:none}
+}
