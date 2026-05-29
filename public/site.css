@@ -13,7 +13,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{
   background:var(--bg);color:var(--ink);
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:'Inter Tight',system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
@@ -24,7 +24,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* Display type */
 .display{
-  font-family:'Bebas Neue','Anton',sans-serif;
+  font-family:'Instrument Serif',Georgia,serif;
   font-weight:400;
   letter-spacing:.005em;
   text-transform:uppercase;
@@ -41,7 +41,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   mix-blend-mode:difference;  /* lets nav stay legible over light/dark frames */
 }
 .site-nav .home-mark{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Instrument Serif',Georgia,serif;
   font-size:18px;letter-spacing:.18em;
   color:#fff;opacity:.9;
 }
@@ -98,7 +98,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   to  {transform:scale(1.12) translate(-1%, -1%)}
 }
 .page-head__title{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Instrument Serif',Georgia,serif;
   font-size:clamp(96px,16vw,260px);
   line-height:.84;letter-spacing:.005em;
   text-transform:uppercase;
@@ -136,7 +136,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   align-items:start;
 }
 .site-foot__big{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Instrument Serif',Georgia,serif;
   font-size:clamp(40px,7vw,96px);line-height:.9;
   text-transform:uppercase;
 }
@@ -212,14 +212,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   display:grid;grid-template-columns:auto 1fr;gap:80px;align-items:center;
 }
 .trusted__label{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Instrument Serif',Georgia,serif;
   font-size:clamp(48px,6vw,96px);
   letter-spacing:.005em;text-transform:uppercase;
   line-height:.9;color:var(--ink);
   display:flex;flex-direction:column;
 }
 .trusted__label .num{
-  font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:.04em;color:var(--ink);
+  font-family:'Instrument Serif',Georgia,serif;font-size:42px;letter-spacing:.04em;color:var(--ink);
   line-height:1;
 }
 .trusted__logos{
@@ -236,7 +236,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   display:flex;align-items:center;justify-content:center;
   height:54px;padding:0 22px;
   border:1px solid var(--hairline);
-  font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;
+  font-family:'Instrument Serif',Georgia,serif;font-size:20px;letter-spacing:.06em;
   color:var(--ink-dim);
 }
 @media (max-width:800px){
