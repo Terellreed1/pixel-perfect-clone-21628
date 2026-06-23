@@ -361,12 +361,7 @@
         + '?subject=' + encodeURIComponent('New project — ' + (data.type || 'inquiry'))
         + '&body='    + encodeURIComponent(body);
       // Open a draft in the user's mail client
-      var a = document.createElement('a');
-      a.href = href;
-      a.rel = 'noopener';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      window.location.href = href;
       form.classList.add('sent');
       window.scrollTo({top:0, behavior:'smooth'});
     });
