@@ -287,10 +287,9 @@
 <div class="patina" aria-hidden="true"><div class="grain"></div><div class="scan"></div><div class="vig"></div></div>
 
 <script>
+  // Prevent native submit (Enter key etc.) — the wizard controls submission.
   document.getElementById('contactForm').addEventListener('submit', e => {
     e.preventDefault();
-    e.currentTarget.classList.add('sent');
-    window.scrollTo({top:0, behavior:'smooth'});
   });
 </script>
 <script>
