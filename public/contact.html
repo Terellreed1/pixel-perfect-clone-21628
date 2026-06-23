@@ -249,8 +249,8 @@
       </div>
     </div>
     <div class="form__sent">
-      <h3>Sent. Talk soon.</h3>
-      <p>I'll reply within a day. If it's urgent, write directly to filmedby3kk@gmail.com.</p>
+      <h3>Draft ready.</h3>
+      <p>Your mail client just opened with the message pre-filled — review it and hit send. If nothing opened, copy the details to filmedby3kk@gmail.com.</p>
     </div>
   </form>
 
@@ -287,10 +287,9 @@
 <div class="patina" aria-hidden="true"><div class="grain"></div><div class="scan"></div><div class="vig"></div></div>
 
 <script>
+  // Prevent native submit (Enter key etc.) — the wizard controls submission.
   document.getElementById('contactForm').addEventListener('submit', e => {
     e.preventDefault();
-    e.currentTarget.classList.add('sent');
-    window.scrollTo({top:0, behavior:'smooth'});
   });
 </script>
 <script>
@@ -362,12 +361,7 @@
         + '?subject=' + encodeURIComponent('New project — ' + (data.type || 'inquiry'))
         + '&body='    + encodeURIComponent(body);
       // Open a draft in the user's mail client
-      var a = document.createElement('a');
-      a.href = href;
-      a.rel = 'noopener';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      window.location.href = href;
       form.classList.add('sent');
       window.scrollTo({top:0, behavior:'smooth'});
     });
