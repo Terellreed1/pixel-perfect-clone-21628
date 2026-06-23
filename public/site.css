@@ -290,7 +290,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media (max-width:800px){
   .trusted{padding:64px 20px}
   .trusted__inner{grid-template-columns:1fr;gap:32px}
-  .trusted__track{gap:32px;animation-duration:28s}
+  .trusted__logos{justify-content:flex-start;gap:32px}
   .trusted__logo img{height:64px}
   .trusted__logo .pill{height:48px;font-size:18px;padding:0 18px}
 }
