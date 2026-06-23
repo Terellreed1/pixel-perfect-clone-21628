@@ -19,20 +19,7 @@
 
   .about-body{
     max-width:1400px;margin:0 auto;padding:100px 36px;
-    display:grid;grid-template-columns:.85fr 1.4fr;gap:80px;align-items:start;
-  }
-  .about-body__media{
-    position:sticky;top:120px;
-    aspect-ratio:3/4;overflow:hidden;border:1px solid var(--hairline);
-    background:#0a0a0b;
-  }
-  .about-body__media img{
-    width:100%;height:100%;object-fit:cover;display:block;
-    filter:grayscale(.15) contrast(1.04) saturate(.95);
-  }
-  .about-body__media::after{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(120% 90% at 50% 100%, transparent 50%, rgba(0,0,0,.45) 100%);
+    display:grid;grid-template-columns:1fr;gap:80px;align-items:start;
   }
   .about-body h2{
     font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);
@@ -94,8 +81,7 @@
   .about-socials .socials a img{width:30px;height:30px}
 
   @media (max-width:800px){
-    .about-body{grid-template-columns:1fr;padding:60px 20px;gap:32px}
-    .about-body__media{position:relative;top:0;max-width:340px}
+    .about-body{padding:60px 20px;gap:32px}
     .partner{grid-template-columns:1fr;padding:48px 20px;gap:24px}
     .partner__logo{width:160px;height:160px}
     .partner__link{justify-self:start}
@@ -178,9 +164,6 @@
 <div class="light-leak" aria-hidden="true"><span></span></div>
 
 <section class="about-body" id="aboutBody">
-  <figure class="about-body__media">
-    <img src="/__l5e/assets-v1/60db59e6-387f-4fca-bd40-13442fdfcc88/aaron-portrait.jpg" alt="Aaron Hampton on a rooftop in Baltimore with a gimbal-mounted camera" loading="lazy" decoding="async" />
-  </figure>
   <div>
     <h2 data-type="the long version....">&nbsp;</h2>
     <div class="prose" id="aboutProse">
