@@ -271,21 +271,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   line-height:1;
 }
 .trusted__logos{
-  position:relative;overflow:hidden;
-  mask-image:linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image:linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-}
-.trusted__track{
-  display:flex;align-items:center;gap:64px;width:max-content;
-  animation:trusted-scroll 40s linear infinite;
-}
-.trusted__logos:hover .trusted__track{animation-play-state:paused}
-@keyframes trusted-scroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-@media (prefers-reduced-motion: reduce){
-  .trusted__track{animation:none}
+  display:flex;align-items:center;gap:64px;flex-wrap:wrap;justify-content:flex-end;
 }
 .trusted__logo{
   display:flex;align-items:center;gap:14px;flex:0 0 auto;
