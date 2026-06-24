@@ -105,6 +105,11 @@
   rows.forEach(function(r){
     r.style.cursor = 'pointer';
     r.addEventListener('click', function(){
+      var link = r.dataset.link;
+      if (link) {
+        window.open(link, '_blank', 'noopener,noreferrer');
+        return;
+      }
       toast.classList.add('show');
       clearTimeout(t);
       t = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
