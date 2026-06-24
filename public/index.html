@@ -157,7 +157,21 @@
     overflow:hidden;scroll-snap-align:start;scroll-snap-stop:normal;
     isolation:isolate;background:#000;
   }
-  .cinema__media{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .cinema__media{
+    position:absolute;inset:0;z-index:0;overflow:hidden;
+    /* Gradient base so the card is never visually empty if video is slow/failed */
+    background:
+      radial-gradient(120% 80% at 30% 30%, #2a2418 0%, #0a0a0b 55%, #000 100%);
+  }
+  .cinema__card:nth-child(2) .cinema__media{
+    background:radial-gradient(120% 80% at 70% 40%, #1a2230 0%, #07080a 60%, #000 100%);
+  }
+  .cinema__card:nth-child(3) .cinema__media{
+    background:radial-gradient(120% 80% at 40% 70%, #221a14 0%, #0a0807 60%, #000 100%);
+  }
+  /* When a video fails to load or the connection is too slow, hide it so the
+     gradient background shows through instead of an empty/broken box. */
+  video.video-failed{display:none !important}
   .cinema__media .frame__placeholder{
     position:absolute;inset:0;
     transform:scale(1.18);filter:brightness(.7);
