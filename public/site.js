@@ -111,3 +111,59 @@
     });
   });
 })();
+
+/* ----- 5. Resilient video loading -----------------------
+   Goal: if a viewer is on slow/limited wifi (or a video errors out,
+   stalls, or never reaches a playable state), don't leave an empty
+   black rectangle on the page. Hide the failing <video> so the
+   container's gradient/poster background shows through.
+--------------------------------------------------------- */
+(function(){
+  var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  var skipAll = false;
+  if (conn) {
+    if (conn.saveData) skipAll = true;
+    var et = conn.effectiveType || '';
+    if (et === 'slow-2g' || et === '2g') skipAll = true;
+  }
+
+  var vids = document.querySelectorAll('video');
+  Array.prototype.forEach.call(vids, function(v){
+    var failed = false;
+    var fail = function(){
+      if (failed) return;
+      failed = true;
+      v.classList.add('video-failed');
+      try { v.pause(); } catch(e){}
+      v.removeAttribute('autoplay');
+      // Strip the heavy src so the browser stops trying to buffer it.
+      try { v.removeAttribute('src'); v.load(); } catch(e){}
+    };
+
+    // Save-Data or very slow connection: never even try the video.
+    if (skipAll) { fail(); return; }
+
+    v.addEventListener('error', fail);
+    v.addEventListener('abort', fail);
+    Array.prototype.forEach.call(v.querySelectorAll('source'), function(s){
+      s.addEventListener('error', fail);
+    });
+
+    // Timeout: if the video hasn't reached "have current data" within
+    // 15 seconds of being asked to load, assume it's not coming.
+    var killTimer = null;
+    var armTimeout = function(){
+      if (killTimer) return;
+      killTimer = setTimeout(function(){
+        if (v.readyState < 2) fail();
+      }, 15000);
+    };
+    var clearTimer = function(){
+      if (killTimer){ clearTimeout(killTimer); killTimer = null; }
+    };
+    v.addEventListener('loadstart', armTimeout);
+    v.addEventListener('loadeddata', clearTimer);
+    v.addEventListener('canplay', clearTimer);
+    if (v.autoplay || v.preload === 'metadata' || v.preload === 'auto') armTimeout();
+  });
+})();
