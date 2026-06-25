@@ -38,14 +38,53 @@
   /* Project list (rows, not a tight grid — more editorial) */
   .work-list{padding:24px 36px 120px;max-width:1400px;margin:0 auto}
   .work-row{
-    display:grid;grid-template-columns:80px 1fr 240px 200px 24px;
+    display:grid;grid-template-columns:80px 1fr 240px 200px auto;
     align-items:center;gap:32px;
     padding:24px 0;
     border-bottom:1px solid var(--hairline);
-    cursor:pointer;position:relative;
+    position:relative;
     transition:background .2s;
   }
-  .work-row:hover{background:rgba(255,255,255,.02)}
+  .work-row__actions{
+    display:flex;gap:10px;align-items:center;justify-self:end;
+  }
+  .work-row__actions button,
+  .work-row__actions a{
+    font-family:var(--mono);
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    padding:8px 14px;border:1px solid var(--hairline);
+    color:var(--ink-dim);background:transparent;
+    transition:border-color .2s,color .2s,background .2s;
+    white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;
+  }
+  .work-row__actions button:hover,
+  .work-row__actions a:hover{
+    border-color:var(--ink);color:var(--ink);background:rgba(255,255,255,.04);
+  }
+
+  /* Video lightbox */
+  .v-lightbox{
+    position:fixed;inset:0;z-index:100;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(0,0,0,.92);
+    opacity:0;visibility:hidden;
+    transition:opacity .3s,visibility .3s;
+    padding:24px;
+  }
+  .v-lightbox.is-open{opacity:1;visibility:visible}
+  .v-lightbox__close{
+    position:absolute;top:24px;right:24px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-dim);background:transparent;border:0;cursor:pointer;
+    padding:8px 12px;border:1px solid var(--hairline);
+    transition:border-color .2s,color .2s;
+    z-index:101;
+  }
+  .v-lightbox__close:hover{border-color:var(--ink);color:var(--ink)}
+  .v-lightbox video{
+    max-width:90vw;max-height:80vh;width:auto;height:auto;
+    display:block;background:#000;
+  }
   .work-row__num{
     font-family:'Instrument Serif',Georgia,serif;font-size:18px;
     letter-spacing:.06em;color:var(--ink-dim);
@@ -86,8 +125,9 @@
       grid-template-columns:auto 1fr;gap:8px 16px;padding:18px 0;
     }
     .work-row__num{grid-row:1/3}
-    .work-row__client,.work-row__cat,.work-row__year{display:none}
-    .work-row__arrow{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+    .work-row__client,.work-row__cat,.work-row__year,.work-row__arrow{display:none}
+    .work-row__actions{grid-column:2;justify-self:start;grid-row:2;margin-top:4px}
+    .work-row__actions button{padding:6px 10px;font-size:9px;letter-spacing:.18em}
     .filters{padding:32px 20px 20px}
     .work-list{padding:16px 20px 80px}
   }
@@ -182,56 +222,80 @@
     <h2 class="work-row__title">Night of the Tigers</h2>
     <span class="work-row__client">Towson Volleyball</span>
     <span class="work-row__cat">Sports / Hype</span>
-    <span class="work-row__arrow">→</span>
+    <div class="work-row__actions">
+      <button type="button" class="js-preview" data-src="https://dl.dropboxusercontent.com/scl/fi/cse2ydtswbobxy6zae1tm/towson-vb-sep-15.mp4?rlkey=mvetpvx1n4a5kogg0dgeixxfk&raw=1">Preview</button>
+      <a href="https://dl.dropboxusercontent.com/scl/fi/cse2ydtswbobxy6zae1tm/towson-vb-sep-15.mp4?rlkey=mvetpvx1n4a5kogg0dgeixxfk&raw=1" target="_blank" rel="noopener">Link</a>
+    </div>
   </article>
   <article class="work-row" data-cat="sports" data-thumb="ember" data-video="https://dl.dropboxusercontent.com/scl/fi/zvgcbdr86ybhyjlavm2bv/Ellie-Gilbert-GOAL-Power-Play-9x16.MOV?rlkey=dfkx0k22ij5temr3jsthnjbeo&raw=1">
     <span class="work-row__num">02</span>
     <h2 class="work-row__title">Power Play</h2>
     <span class="work-row__client">The Agile Team</span>
     <span class="work-row__cat">Sports / Player Feature</span>
-    <span class="work-row__arrow">→</span>
+    <div class="work-row__actions">
+      <button type="button" class="js-preview" data-src="https://dl.dropboxusercontent.com/scl/fi/zvgcbdr86ybhyjlavm2bv/Ellie-Gilbert-GOAL-Power-Play-9x16.MOV?rlkey=dfkx0k22ij5temr3jsthnjbeo&raw=1">Preview</button>
+      <a href="https://dl.dropboxusercontent.com/scl/fi/zvgcbdr86ybhyjlavm2bv/Ellie-Gilbert-GOAL-Power-Play-9x16.MOV?rlkey=dfkx0k22ij5temr3jsthnjbeo&raw=1" target="_blank" rel="noopener">Link</a>
+    </div>
   </article>
   <article class="work-row" data-cat="sports" data-thumb="cool" data-video="https://dl.dropboxusercontent.com/scl/fi/27b2fhc0rrkecu4rjdtxj/VB-VS.-NO.mp4?rlkey=6yzuglqs8jfp30zd90x8367lq&raw=1">
     <span class="work-row__num">03</span>
     <h2 class="work-row__title">Match Point</h2>
     <span class="work-row__client">Towson Volleyball</span>
     <span class="work-row__cat">Sports / Recap</span>
-    <span class="work-row__arrow">→</span>
+    <div class="work-row__actions">
+      <button type="button" class="js-preview" data-src="https://dl.dropboxusercontent.com/scl/fi/27b2fhc0rrkecu4rjdtxj/VB-VS.-NO.mp4?rlkey=6yzuglqs8jfp30zd90x8367lq&raw=1">Preview</button>
+      <a href="https://dl.dropboxusercontent.com/scl/fi/27b2fhc0rrkecu4rjdtxj/VB-VS.-NO.mp4?rlkey=6yzuglqs8jfp30zd90x8367lq&raw=1" target="_blank" rel="noopener">Link</a>
+    </div>
   </article>
   <article class="work-row" data-cat="sports" data-thumb="green" data-video="https://dl.dropboxusercontent.com/scl/fi/e1ozn5grb5b2w6wz14v1n/WBB-VS-LEHIGH.mov?rlkey=j16aetqwzvfyh9nopra3dri7h&raw=1">
     <span class="work-row__num">04</span>
     <h2 class="work-row__title">Hardwood</h2>
     <span class="work-row__client">Towson Women's Basketball</span>
     <span class="work-row__cat">Sports / Recap</span>
-    <span class="work-row__arrow">→</span>
+    <div class="work-row__actions">
+      <button type="button" class="js-preview" data-src="https://dl.dropboxusercontent.com/scl/fi/e1ozn5grb5b2w6wz14v1n/WBB-VS-LEHIGH.mov?rlkey=j16aetqwzvfyh9nopra3dri7h&raw=1">Preview</button>
+      <a href="https://dl.dropboxusercontent.com/scl/fi/e1ozn5grb5b2w6wz14v1n/WBB-VS-LEHIGH.mov?rlkey=j16aetqwzvfyh9nopra3dri7h&raw=1" target="_blank" rel="noopener">Link</a>
+    </div>
   </article>
   <article class="work-row" data-cat="creative" data-thumb="warm" data-video="https://www.dropbox.com/scl/fo/gdud4hkfamyzgzgmpx65y/ACQdNdT6092fn6lQv2K41cs/Argue%20in%20Style%20FINAL%20.mov?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1" data-link="https://www.dropbox.com/scl/fo/gdud4hkfamyzgzgmpx65y/ACQdNdT6092fn6lQv2K41cs/Argue%20in%20Style%20FINAL%20.mov?rlkey=j9dx0eicmlcumhujnd9akha0i&st=8modfgfh&dl=0">
     <span class="work-row__num">05</span>
     <h2 class="work-row__title">Argue in Style</h2>
     <span class="work-row__client">Converse · Conceptual Ad</span>
     <span class="work-row__cat">Creative / Spec</span>
-    <span class="work-row__arrow">→</span>
+    <div class="work-row__actions">
+      <button type="button" class="js-preview" data-src="https://www.dropbox.com/scl/fo/gdud4hkfamyzgzgmpx65y/ACQdNdT6092fn6lQv2K41cs/Argue%20in%20Style%20FINAL%20.mov?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1">Preview</button>
+      <a href="https://www.dropbox.com/scl/fo/gdud4hkfamyzgzgmpx65y/ACQdNdT6092fn6lQv2K41cs/Argue%20in%20Style%20FINAL%20.mov?rlkey=j9dx0eicmlcumhujnd9akha0i&st=8modfgfh&dl=0" target="_blank" rel="noopener">Link</a>
+    </div>
   </article>
   <article class="work-row" data-cat="creative" data-thumb="cool" data-video="https://dl.dropboxusercontent.com/scl/fo/gdud4hkfamyzgzgmpx65y/APYxeLdFfaI8qLDnMm09Qtc/SNOWED%20IN%20AUDIO%20FIX%20.mp4?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1">
     <span class="work-row__num">06</span>
     <h2 class="work-row__title">Snowed In</h2>
     <span class="work-row__client">Creative / Short Film</span>
     <span class="work-row__cat">Creative / Short Films</span>
-    <span class="work-row__arrow">→</span>
+    <div class="work-row__actions">
+      <button type="button" class="js-preview" data-src="https://dl.dropboxusercontent.com/scl/fo/gdud4hkfamyzgzgmpx65y/APYxeLdFfaI8qLDnMm09Qtc/SNOWED%20IN%20AUDIO%20FIX%20.mp4?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1">Preview</button>
+      <a href="https://dl.dropboxusercontent.com/scl/fo/gdud4hkfamyzgzgmpx65y/APYxeLdFfaI8qLDnMm09Qtc/SNOWED%20IN%20AUDIO%20FIX%20.mp4?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1" target="_blank" rel="noopener">Link</a>
+    </div>
   </article>
   <article class="work-row" data-cat="creative" data-thumb="warm" data-video="https://dl.dropboxusercontent.com/scl/fo/gdud4hkfamyzgzgmpx65y/ABBBkaTAoh-DbdkE-GuFeXc/Bahamas%20Clean.mov?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1" data-link="https://www.dropbox.com/scl/fo/gdud4hkfamyzgzgmpx65y/ABBBkaTAoh-DbdkE-GuFeXc/Bahamas%20Clean.mov?rlkey=j9dx0eicmlcumhujnd9akha0i&st=6pmdwu7q&dl=0">
     <span class="work-row__num">07</span>
     <h2 class="work-row__title">Bahamas Clean</h2>
     <span class="work-row__client">Creative / Short Film</span>
     <span class="work-row__cat">Creative / Short Films</span>
-    <span class="work-row__arrow">→</span>
+    <div class="work-row__actions">
+      <button type="button" class="js-preview" data-src="https://dl.dropboxusercontent.com/scl/fo/gdud4hkfamyzgzgmpx65y/ABBBkaTAoh-DbdkE-GuFeXc/Bahamas%20Clean.mov?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1">Preview</button>
+      <a href="https://www.dropbox.com/scl/fo/gdud4hkfamyzgzgmpx65y/ABBBkaTAoh-DbdkE-GuFeXc/Bahamas%20Clean.mov?rlkey=j9dx0eicmlcumhujnd9akha0i&st=6pmdwu7q&dl=0" target="_blank" rel="noopener">Link</a>
+    </div>
   </article>
   <article class="work-row" data-cat="creative" data-thumb="warm" data-video="https://dl.dropboxusercontent.com/scl/fo/gdud4hkfamyzgzgmpx65y/AGOjMsGRwEsdsoXS1sMIPpc/vday%20finished%20finsihed%20omg%20.mp4?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1" data-link="https://www.dropbox.com/scl/fo/gdud4hkfamyzgzgmpx65y/AGOjMsGRwEsdsoXS1sMIPpc/vday%20finished%20finsihed%20omg%20.mp4?rlkey=j9dx0eicmlcumhujnd9akha0i&st=x2njy8ty&dl=0">
     <span class="work-row__num">08</span>
     <h2 class="work-row__title">V-Day</h2>
     <span class="work-row__client">Creative / Short Film</span>
     <span class="work-row__cat">Creative / Short Films</span>
-    <span class="work-row__arrow">→</span>
+    <div class="work-row__actions">
+      <button type="button" class="js-preview" data-src="https://dl.dropboxusercontent.com/scl/fo/gdud4hkfamyzgzgmpx65y/AGOjMsGRwEsdsoXS1sMIPpc/vday%20finished%20finsihed%20omg%20.mp4?rlkey=j9dx0eicmlcumhujnd9akha0i&raw=1">Preview</button>
+      <a href="https://www.dropbox.com/scl/fo/gdud4hkfamyzgzgmpx65y/AGOjMsGRwEsdsoXS1sMIPpc/vday%20finished%20finsihed%20omg%20.mp4?rlkey=j9dx0eicmlcumhujnd9akha0i&st=x2njy8ty&dl=0" target="_blank" rel="noopener">Link</a>
+    </div>
   </article>
 </section>
 
@@ -239,6 +303,12 @@
 <div class="thumb frame" id="hoverThumb" aria-hidden="true">
   <video id="hoverVideo" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block"></video>
   <div class="frame__grade"></div>
+</div>
+
+<!-- Video lightbox -->
+<div class="v-lightbox" id="vLightbox" aria-hidden="true">
+  <button type="button" class="v-lightbox__close" id="vLightboxClose">Close</button>
+  <video id="vLightboxVideo" controls playsinline preload="metadata" style="max-width:90vw;max-height:80vh;width:auto;height:auto;display:block;background:#000"></video>
 </div>
 
 <footer class="site-foot">
@@ -317,6 +387,36 @@
     thumb.style.left = e.clientX + 'px';
     thumb.style.top = e.clientY + 'px';
   });
+
+  // Lightbox (Preview buttons)
+  const vLb = document.getElementById('vLightbox');
+  const vVid = document.getElementById('vLightboxVideo');
+  const vClose = document.getElementById('vLightboxClose');
+  function openLightbox(src){
+    if(!src) return;
+    vVid.src = src;
+    vVid.play().catch(()=>{});
+    vLb.classList.add('is-open');
+    vLb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    vLb.classList.remove('is-open');
+    vLb.setAttribute('aria-hidden','true');
+    vVid.pause();
+    vVid.removeAttribute('src');
+    vVid.load();
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.js-preview').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      openLightbox(btn.dataset.src);
+    });
+  });
+  vClose.addEventListener('click', closeLightbox);
+  vLb.addEventListener('click', e => { if(e.target === vLb) closeLightbox(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
 </script>
 <script src="site.js" defer></script>
 </body>
