@@ -48,15 +48,17 @@
   .work-row__actions{
     display:flex;gap:10px;align-items:center;justify-self:end;
   }
-  .work-row__actions button{
+  .work-row__actions button,
+  .work-row__actions a{
     font-family:var(--mono);
     font-size:10px;letter-spacing:.22em;text-transform:uppercase;
     padding:8px 14px;border:1px solid var(--hairline);
     color:var(--ink-dim);background:transparent;
     transition:border-color .2s,color .2s,background .2s;
-    white-space:nowrap;
+    white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;
   }
-  .work-row__actions button:hover{
+  .work-row__actions button:hover,
+  .work-row__actions a:hover{
     border-color:var(--ink);color:var(--ink);background:rgba(255,255,255,.04);
   }
 
