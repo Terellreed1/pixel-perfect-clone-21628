@@ -1,5 +1,7 @@
 {
-  "outputDirectory": "public",
+  "buildCommand": "mkdir -p dist && cp -r public/* dist/",
+  "outputDirectory": "dist",
+  "framework": null,
   "cleanUrls": true,
   "trailingSlash": false
 }
