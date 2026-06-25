@@ -1,16 +1,5 @@
 {
-  "version": 2,
-  "buildCommand": null,
   "outputDirectory": "public",
   "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/work", "destination": "/work.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/clients", "destination": "/clients.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/Aaron_Hampton", "destination": "/Aaron_Hampton.html" },
-    { "source": "/home", "destination": "/index.html" }
-  ]
+  "trailingSlash": false
 }
