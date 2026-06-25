@@ -387,6 +387,36 @@
     thumb.style.left = e.clientX + 'px';
     thumb.style.top = e.clientY + 'px';
   });
+
+  // Lightbox (Preview buttons)
+  const vLb = document.getElementById('vLightbox');
+  const vVid = document.getElementById('vLightboxVideo');
+  const vClose = document.getElementById('vLightboxClose');
+  function openLightbox(src){
+    if(!src) return;
+    vVid.src = src;
+    vVid.play().catch(()=>{});
+    vLb.classList.add('is-open');
+    vLb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    vLb.classList.remove('is-open');
+    vLb.setAttribute('aria-hidden','true');
+    vVid.pause();
+    vVid.removeAttribute('src');
+    vVid.load();
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.js-preview').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      openLightbox(btn.dataset.src);
+    });
+  });
+  vClose.addEventListener('click', closeLightbox);
+  vLb.addEventListener('click', e => { if(e.target === vLb) closeLightbox(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
 </script>
 <script src="site.js" defer></script>
 </body>
