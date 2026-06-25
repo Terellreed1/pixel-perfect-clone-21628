@@ -45,7 +45,44 @@
     position:relative;
     transition:background .2s;
   }
-  .work-row:hover{background:rgba(255,255,255,.02)}
+  .work-row__actions{
+    display:flex;gap:10px;align-items:center;justify-self:end;
+  }
+  .work-row__actions button{
+    font-family:var(--mono);
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    padding:8px 14px;border:1px solid var(--hairline);
+    color:var(--ink-dim);background:transparent;
+    transition:border-color .2s,color .2s,background .2s;
+    white-space:nowrap;
+  }
+  .work-row__actions button:hover{
+    border-color:var(--ink);color:var(--ink);background:rgba(255,255,255,.04);
+  }
+
+  /* Video lightbox */
+  .v-lightbox{
+    position:fixed;inset:0;z-index:100;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(0,0,0,.92);
+    opacity:0;visibility:hidden;
+    transition:opacity .3s,visibility .3s;
+    padding:24px;
+  }
+  .v-lightbox.is-open{opacity:1;visibility:visible}
+  .v-lightbox__close{
+    position:absolute;top:24px;right:24px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-dim);background:transparent;border:0;cursor:pointer;
+    padding:8px 12px;border:1px solid var(--hairline);
+    transition:border-color .2s,color .2s;
+    z-index:101;
+  }
+  .v-lightbox__close:hover{border-color:var(--ink);color:var(--ink)}
+  .v-lightbox video{
+    max-width:90vw;max-height:80vh;width:auto;height:auto;
+    display:block;background:#000;
+  }
   .work-row__num{
     font-family:'Instrument Serif',Georgia,serif;font-size:18px;
     letter-spacing:.06em;color:var(--ink-dim);
