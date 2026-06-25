@@ -93,29 +93,6 @@
   }
 })();
 
-/* ----- 4. Case-study coming-soon toast on work rows ----- */
-(function(){
-  var rows = document.querySelectorAll('.work-row');
-  if (!rows.length) return;
-  var toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerHTML = '<span class="toast__dot"></span><span class="toast__txt">Case study — coming soon</span>';
-  document.body.appendChild(toast);
-  var t;
-  rows.forEach(function(r){
-    r.style.cursor = 'pointer';
-    r.addEventListener('click', function(){
-      var link = r.dataset.link;
-      if (link) {
-        window.open(link, '_blank', 'noopener,noreferrer');
-        return;
-      }
-      toast.classList.add('show');
-      clearTimeout(t);
-      t = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
-    });
-  });
-})();
 
 /* ----- 5. Resilient video loading -----------------------
    Goal: if a viewer is on slow/limited wifi (or a video errors out,
