@@ -47,6 +47,7 @@
   }
   .work-row__actions{
     display:flex;gap:10px;align-items:center;justify-self:end;
+    position:relative;z-index:2;
   }
   .work-row__actions button,
   .work-row__actions a{
@@ -56,6 +57,7 @@
     color:var(--ink-dim);background:transparent;
     transition:border-color .2s,color .2s,background .2s;
     white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;
+    cursor:pointer;touch-action:manipulation;
   }
   .work-row__actions button:hover,
   .work-row__actions a:hover{
@@ -108,15 +110,10 @@
     font-family:'Instrument Serif',Georgia,serif;font-size:16px;letter-spacing:.06em;color:var(--ink-dim);
   }
 
-  /* Floating thumbnail that follows cursor */
+  /* Hover previews are disabled so Preview/Link are the only actions */
   .thumb{
-    position:fixed;width:340px;aspect-ratio:16/9;
-    z-index:35;pointer-events:none;opacity:0;
-    transform:translate(-50%,-50%) scale(.95);
-    transition:opacity .25s, transform .35s cubic-bezier(.2,.7,.2,1);
-    overflow:hidden;background:#000;
+    display:none;
   }
-  .thumb.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
   .work-row--soon{opacity:.55;cursor:default}
   .work-row--soon:hover{background:transparent}
 
@@ -299,7 +296,7 @@
   </article>
 </section>
 
-<!-- Hover thumbnail (plays the row's video) -->
+<!-- Disabled hover thumbnail: previews now open only through the Preview button -->
 <div class="thumb frame" id="hoverThumb" aria-hidden="true">
   <video id="hoverVideo" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block"></video>
   <div class="frame__grade"></div>
@@ -362,31 +359,6 @@
     });
     count.textContent = n;
   }));
-
-  // Hover thumbnail follows cursor + plays the row's video
-  const thumb = document.getElementById('hoverThumb');
-  const thumbVid = document.getElementById('hoverVideo');
-  let active = false;
-  rows.forEach(r => {
-    r.addEventListener('mouseenter', () => {
-      const src = r.dataset.video;
-      if (!src) { thumb.classList.remove('show'); return; }
-      active = true;
-      if (thumbVid.src !== src) thumbVid.src = src;
-      thumbVid.play().catch(()=>{});
-      thumb.classList.add('show');
-    });
-    r.addEventListener('mouseleave', () => {
-      active = false;
-      thumb.classList.remove('show');
-      thumbVid.pause();
-    });
-  });
-  document.addEventListener('mousemove', e => {
-    if (!active) return;
-    thumb.style.left = e.clientX + 'px';
-    thumb.style.top = e.clientY + 'px';
-  });
 
   // Lightbox (Preview buttons)
   const vLb = document.getElementById('vLightbox');
