@@ -77,9 +77,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Aaron Hampton — Director & Cinematographer" },
       { property: "og:description", content: "HB.3KK / Aaron Hampton — director and cinematographer based in the DMV. Cinematic sports films and brand stories." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/assets/hb3kk-logo.png" },
+      { property: "og:image", content: "https://pixel-perfect-clone-21628.lovable.app/assets/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/assets/hb3kk-logo.png" },
+      { name: "twitter:image", content: "https://pixel-perfect-clone-21628.lovable.app/assets/og-image.jpg" },
     ],
     links: [
       { rel: "icon", type: "image/png", href: "/assets/hb3kk-logo.png" },
