@@ -82,8 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://pixel-perfect-clone-21628.lovable.app/assets/og-image.jpg" },
     ],
     links: [
-      { rel: "icon", type: "image/png", href: "/assets/hb3kk-logo.png" },
-      { rel: "apple-touch-icon", href: "/assets/hb3kk-logo.png" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
       {
         rel: "stylesheet",
         href: appCss,
